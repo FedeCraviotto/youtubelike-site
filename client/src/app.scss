@@ -1,9 +1,11 @@
-.app{
+@import "./common.scss";
+.app {
+  @include themify($themes) {
     display: flex;
-    .main{
-        flex:7;
-        background-color:#181818;
-        .navbar{}
-        .wrapper{}
+    .main {
+      flex: 7;
+      background-color: themed("bg");
+      color: themed("textColor");
     }
+  }
 }

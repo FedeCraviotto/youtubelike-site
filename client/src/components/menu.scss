@@ -1,48 +1,51 @@
+@import '../common.scss';
 .menu{
-    flex:1;
-    background-color: #202020;
-    height: 100vh;
-    color: white;
-    font-size:14px;
-    position: sticky;
-    top: 0;
-    .wrapper{
-        padding: 18px 26px;
-        hr{
-            margin:15px 0px;
-            border: 0.5px solid #373737;
-        }
-        .logo{
-            display:flex;
-            align-items: center;
-            gap: 5px;
-            font-weight: bold;
-            margin-bottom: 25px;
-            padding: 7.5px;
-            img{
-                height:25px;
+    @include themify($themes){
+        flex:1;
+        background-color: themed('bgSoft');
+        height: 100vh;
+        color: themed('textColor');
+        font-size:14px;
+        position: sticky;
+        top: 0;
+        .wrapper{
+            padding: 18px 26px;
+            hr{
+                margin:15px 0px;
+                border: 0.5px solid themed('border');
             }
-        }
-        .item{
-            display:flex;
-            align-items: center;
-            gap: 20px;
-            cursor: pointer;
-            padding: 7.5px;
-        }
-        .login{
-            button{
-                padding: 5px 15px;
-                background-color: transparent;
-                border: 1px solid #3ea6ff;
-                color: #3ea6ff;
-                border-radius: 3px;
-                font-weight: 500;
-                margin-top: 10px;
-                cursor:pointer;
-                display: flex;
+            .logo{
+                display:flex;
                 align-items: center;
                 gap: 5px;
+                font-weight: bold;
+                margin-bottom: 25px;
+                padding: 7.5px;
+                img{
+                    height:25px;
+                }
+            }
+            .item{
+                display:flex;
+                align-items: center;
+                gap: 20px;
+                cursor: pointer;
+                padding: 7.5px;
+            }
+            .login{
+                button{
+                    padding: 5px 15px;
+                    background-color: transparent;
+                    border: 1px solid #3ea6ff;
+                    color: #3ea6ff;
+                    border-radius: 3px;
+                    font-weight: 500;
+                    margin-top: 10px;
+                    cursor:pointer;
+                    display: flex;
+                    align-items: center;
+                    gap: 5px;
+                }
             }
         }
     }

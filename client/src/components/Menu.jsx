@@ -17,88 +17,92 @@ import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import FlagOutlinedIcon from "@mui/icons-material/FlagOutlined";
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import SettingsBrightnessOutlinedIcon from "@mui/icons-material/SettingsBrightnessOutlined";
+import { DarkModeContext } from '../context/darkModeContext.js';
+import { useContext } from "react";
 
 function Menu(){
-    return(
-        <div className="menu">
-            <div className="wrapper">
-                <div className="logo">
-                    <img src={YoutubeLogo} alt="" />
-                    YouTube
-                </div>
-                <div className="item">
-                    <HomeIcon/>
-                    Home
-                </div>
-                <div className="item">
-                    <ExploreOutlinedIcon/>
-                    Explore
-                </div>
-                <div className="item">
-                    <SubscriptionsOutlinedIcon/>
-                    Subscriptions
-                </div>
-                <hr />
-                <div className="item">
-                    <VideoLibraryOutlinedIcon/>
-                    Library
-                </div>
-                <div className="item">
-                    <HistoryOutlinedIcon/>
-                    History
-                </div>
-                <hr />
-                <div className="login">
-                    Sign in for more videos, comment, and suscribe
-                    <button>
-                        <AccountCircleOutlinedIcon />
-                        Sign In
-                    </button>
-                </div>
-                <hr />
-                <div className="item">
-                    <LibraryMusicOutlinedIcon />
-                    Music
-                </div>
-                <div className="item">
-                    <SportsBasketballOutlinedIcon />
-                    Sports
-                </div>
-                <div className="item">
-                    <SportsEsportsOutlinedIcon />
-                    Gaming
-                </div>
-                <div className="item">
-                    <MovieOutlinedIcon />
-                    Movies
-                </div>
-                <div className="item">
-                    <ArticleOutlinedIcon />
-                    News
-                </div>
-                <div className="item">
-                    <LiveTvOutlinedIcon />
-                    Live
-                </div>
-                <hr />
-                <div className="item">
-                    <SettingsOutlinedIcon />   
-                    Settings
-                </div>
-                <div className="item">
-                    <FlagOutlinedIcon/>
-                    Report
-                </div>
-                <div className="item">
-                    <HelpOutlineOutlinedIcon />
-                    Help
-                </div>
-                <div className="item">
-                    <SettingsBrightnessOutlinedIcon/>
-                    Light Mode
-                </div>
-            </div>
+
+    const {toggleMode} = useContext(DarkModeContext);
+    return (
+      <div className="menu">
+        <div className="wrapper">
+          <div className="logo">
+            <img src={YoutubeLogo} alt="" />
+            YouTube
+          </div>
+          <div className="item">
+            <HomeIcon />
+            Home
+          </div>
+          <div className="item">
+            <ExploreOutlinedIcon />
+            Explore
+          </div>
+          <div className="item">
+            <SubscriptionsOutlinedIcon />
+            Subscriptions
+          </div>
+          <hr />
+          <div className="item">
+            <VideoLibraryOutlinedIcon />
+            Library
+          </div>
+          <div className="item">
+            <HistoryOutlinedIcon />
+            History
+          </div>
+          <hr />
+          <div className="login">
+            Sign in for more videos, comment, and suscribe
+            <button>
+              <AccountCircleOutlinedIcon />
+              Sign In
+            </button>
+          </div>
+          <hr />
+          <div className="item">
+            <LibraryMusicOutlinedIcon />
+            Music
+          </div>
+          <div className="item">
+            <SportsBasketballOutlinedIcon />
+            Sports
+          </div>
+          <div className="item">
+            <SportsEsportsOutlinedIcon />
+            Gaming
+          </div>
+          <div className="item">
+            <MovieOutlinedIcon />
+            Movies
+          </div>
+          <div className="item">
+            <ArticleOutlinedIcon />
+            News
+          </div>
+          <div className="item">
+            <LiveTvOutlinedIcon />
+            Live
+          </div>
+          <hr />
+          <div className="item">
+            <SettingsOutlinedIcon />
+            Settings
+          </div>
+          <div className="item">
+            <FlagOutlinedIcon />
+            Report
+          </div>
+          <div className="item">
+            <HelpOutlineOutlinedIcon />
+            Help
+          </div>
+          <div className="item" onClick={toggleMode}>
+              <SettingsBrightnessOutlinedIcon />
+              Toggle Mode
+          </div>
         </div>
-    )
+      </div>
+    );
 }
 export default Menu;
