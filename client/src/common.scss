@@ -4,14 +4,16 @@ $themes:(
         bg: white,
         bgSoft: rgb(229, 229, 227),
         textColorSoft: rgb(73, 69, 69),
-        buttonColor:#003ff2
+        buttonColor:#003ff2,
+        border: rgba(63, 63, 63, 0.508)
     ),
     dark:(
         textColor:#f1f1f1,
         bg: #0f0f0f,
-        bgSoft: #181818,
+        bgSoft: #0f0f0f,
         textColorSoft: rgb(191, 190, 190),
-        buttonColor:#3ea6ff
+        buttonColor:#3ea6ff,
+        border: rgba(255, 255, 255, 0.2)
     ),
 );
 

@@ -4,12 +4,37 @@
         position: sticky;
         top: 0;
         background-color: themed('bg');
+        height: 56px;
         .wrapper{
             display: flex;
             align-items: center;
+            height: 100%;
+            padding: 0px 20px;
+            justify-content: flex-end;
+            position: relative;
             .search{
-                input{}
+                flex: 4;
+                // position: absolute;
+                // left: 0px;
+                right: 0;
+                margin: auto;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 5px 10px;
+                border: 1px solid themed('border');
+                border-radius: 15px;
+                input{
+                    caret-color: themed('textColor');
+                    outline: none;
+                    width: 100%;
+                    border: none;
+                    background-color: transparent;
+                }
     
+            }
+            .actions{
+                display: flex;
             }
         }
         button{
@@ -19,7 +44,6 @@
             color: themed('buttonColor');
             border-radius: 3px;
             font-weight: 500;
-            margin-top: 10px;
             cursor:pointer;
             display: flex;
             align-items: center;
