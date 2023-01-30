@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import './menu.scss';
 import YoutubeLogo from '../images/yt-med.png';
 import HomeIcon from "@mui/icons-material/Home";
 import ExploreOutlinedIcon from "@mui/icons-material/ExploreOutlined";
@@ -18,143 +18,87 @@ import FlagOutlinedIcon from "@mui/icons-material/FlagOutlined";
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import SettingsBrightnessOutlinedIcon from "@mui/icons-material/SettingsBrightnessOutlined";
 
-const Container = styled.div`
-flex:1;
-background-color: #202020;
-height: 100vh;
-color: white;
-font-size:14px;
-position: sticky;
-top: 0;
-`
-
-const Wrapper = styled.div`
-padding: 18px 26px;
-`
-
-const Item = styled.div`
-display:flex;
-align-items: center;
-gap 20px;
-cursor:pointer;
-padding: 7.5px;
-
-`
-
-const Logo = styled.div`
-display:flex;
-align-items: center;
-gap 5px;
-font-weight: bold;
-margin-bottom: 25px;
-`
-
-const Img =styled.img`
-height:25px;
-`
-;
-
-const Hr = styled.hr`
-margin:15px 0px;
-border: 0.5px solid #373737;
-`
-
-const Login = styled.div``
-const Button = styled.button`
-padding: 5px 15px;
-background-color: transparent;
-border: 1px solid #3ea6ff;
-color: #3ea6ff;
-border-radius: 3px;
-font-weight: 500;
-margin-top: 10px;
-cursor:pointer;
-display: flex;
-align-items: center;
-gap: 5px;
-`
-
 function Menu(){
     return(
-        <Container>
-            <Wrapper>
-                <Logo>
-                    <Img src={YoutubeLogo}/>
+        <div className="menu">
+            <div className="wrapper">
+                <div className="logo">
+                    <img src={YoutubeLogo} alt="" />
                     YouTube
-                </Logo>
-                <Item>
+                </div>
+                <div className="item">
                     <HomeIcon/>
                     Home
-                </Item>
-                <Item>
+                </div>
+                <div className="item">
                     <ExploreOutlinedIcon/>
                     Explore
-                </Item>
-                <Item>
+                </div>
+                <div className="item">
                     <SubscriptionsOutlinedIcon/>
                     Subscriptions
-                </Item>
-                <Hr />
-                <Item>
+                </div>
+                <hr />
+                <div className="item">
                     <VideoLibraryOutlinedIcon/>
                     Library
-                </Item>
-                <Item>
+                </div>
+                <div className="item">
                     <HistoryOutlinedIcon/>
                     History
-                </Item>
-                <Hr />
-                <Login>
+                </div>
+                <hr />
+                <div className="login">
                     Sign in for more videos, comment, and suscribe
-                    <Button>
+                    <button>
                         <AccountCircleOutlinedIcon />
                         Sign In
-                        </Button>
-                </Login>
-                <Hr />
-                <Item>
+                    </button>
+                </div>
+                <hr />
+                <div className="item">
                     <LibraryMusicOutlinedIcon />
                     Music
-                </Item>
-                <Item>
+                </div>
+                <div className="item">
                     <SportsBasketballOutlinedIcon />
                     Sports
-                </Item>
-                <Item>
+                </div>
+                <div className="item">
                     <SportsEsportsOutlinedIcon />
                     Gaming
-                </Item>
-                <Item>
+                </div>
+                <div className="item">
                     <MovieOutlinedIcon />
                     Movies
-                </Item>
-                <Item>
+                </div>
+                <div className="item">
                     <ArticleOutlinedIcon />
                     News
-                </Item>
-                <Item>
+                </div>
+                <div className="item">
                     <LiveTvOutlinedIcon />
                     Live
-                </Item>
-                <Hr />
-                <Item>
+                </div>
+                <hr />
+                <div className="item">
                     <SettingsOutlinedIcon />   
                     Settings
-                </Item>
-                <Item>
+                </div>
+                <div className="item">
                     <FlagOutlinedIcon/>
                     Report
-                </Item>
-                <Item>
+                </div>
+                <div className="item">
                     <HelpOutlineOutlinedIcon />
                     Help
-                </Item>
-                <Item>
+                </div>
+                <div className="item">
                     <SettingsBrightnessOutlinedIcon/>
                     Light Mode
-                </Item>
-            </Wrapper>
-        </Container>
+                </div>
+            </div>
+        </div>
     )
 }
 export default Menu;
