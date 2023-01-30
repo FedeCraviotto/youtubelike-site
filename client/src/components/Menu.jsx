@@ -12,7 +12,6 @@ import SportsBasketballOutlinedIcon from "@mui/icons-material/SportsBasketballOu
 import MovieOutlinedIcon from "@mui/icons-material/MovieOutlined";
 import ArticleOutlinedIcon from "@mui/icons-material/ArticleOutlined";
 import LiveTvOutlinedIcon from "@mui/icons-material/LiveTvOutlined";
-import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import FlagOutlinedIcon from "@mui/icons-material/FlagOutlined";
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
@@ -32,75 +31,146 @@ function Menu(){
           </div>
           <div className="item">
             <HomeIcon />
-            Home
+            Principal
           </div>
           <div className="item">
             <ExploreOutlinedIcon />
-            Explore
+            Shorts
           </div>
           <div className="item">
             <SubscriptionsOutlinedIcon />
-            Subscriptions
+            Suscripciones
           </div>
           <hr />
           <div className="item">
             <VideoLibraryOutlinedIcon />
-            Library
+            Biblioteca
           </div>
           <div className="item">
             <HistoryOutlinedIcon />
-            History
+            Historial
+          </div>
+          <div className="item">
+            <HistoryOutlinedIcon />
+            Tus Videos
+          </div>
+          <div className="item">
+            <HistoryOutlinedIcon />
+            Ver mas tarde
+          </div>
+          <div className="item">
+            <HistoryOutlinedIcon />
+            Videos que me gustan
           </div>
           <hr />
-          <div className="login">
-            Sign in for more videos, comment, and suscribe
-            <button>
-              <AccountCircleOutlinedIcon />
-              Sign In
-            </button>
-          </div>
-          <hr />
+          <h2> Suscripciones</h2>
           <div className="item">
             <LibraryMusicOutlinedIcon />
-            Music
+            Channel 1
           </div>
           <div className="item">
-            <SportsBasketballOutlinedIcon />
-            Sports
+            <LibraryMusicOutlinedIcon />
+            Channel 2
           </div>
           <div className="item">
-            <SportsEsportsOutlinedIcon />
-            Gaming
+            <LibraryMusicOutlinedIcon />
+            Channel 3
+          </div>
+          <div className="item">
+            <LibraryMusicOutlinedIcon />
+            Channel 4
+          </div>
+          <hr />
+          <h2>Explorar</h2>
+          <div className="item">
+            <LibraryMusicOutlinedIcon />
+            Tendencias
+          </div>
+          <div className="item">
+            <LibraryMusicOutlinedIcon />
+            Musica
           </div>
           <div className="item">
             <MovieOutlinedIcon />
-            Movies
-          </div>
-          <div className="item">
-            <ArticleOutlinedIcon />
-            News
+            Peliculas
           </div>
           <div className="item">
             <LiveTvOutlinedIcon />
-            Live
+            En vivo
+          </div>
+          <div className="item">
+            <SportsEsportsOutlinedIcon />
+            Videojuegos
+          </div>
+          <div className="item">
+            <SportsEsportsOutlinedIcon />
+            Noticias
+          </div>
+          <div className="item">
+            <SportsBasketballOutlinedIcon />
+            Deportes
+          </div>
+          <div className="item">
+            <ArticleOutlinedIcon />
+            Aprendizaje
+          </div>
+          <hr />
+          <h2>Mas de YouTube</h2>
+          <div className="item">
+            <SettingsOutlinedIcon />
+            YouTube Premium
+          </div>
+          <div className="item">
+            <SettingsOutlinedIcon />
+            Creator Studio
+          </div>
+          <div className="item">
+            <SettingsOutlinedIcon />
+            YouTube Music
+          </div>
+          <div className="item">
+            <SettingsOutlinedIcon />
+            YouTube Kids
+          </div>
+          <div className="item">
+            <SettingsOutlinedIcon />
+            YouTube TV
           </div>
           <hr />
           <div className="item">
             <SettingsOutlinedIcon />
-            Settings
+            Configuracion
           </div>
           <div className="item">
             <FlagOutlinedIcon />
-            Report
+            Historial de denuncias
           </div>
           <div className="item">
             <HelpOutlineOutlinedIcon />
-            Help
+            Ayuda
+          </div>
+          <div className="item">
+            <HelpOutlineOutlinedIcon />
+            Enviar comentarios
           </div>
           <div className="item" onClick={toggleMode}>
               <SettingsBrightnessOutlinedIcon />
               Toggle Mode
           </div>
+          <hr />
+          <p className="legals">Acerca de Prensa</p>
+          <p className="legals">Derechos de Autor</p>
+          <p className="legals">Comunicarte con Nosotros</p>
+          <p className="legals">Creadores</p>
+          <p className="legals">Anunciar</p>
+          <p className="legals">Desarrolladores</p>
+          <br />
+          <p className="legals">Condiciones</p>
+          <p className="legals">Privacidad</p>
+          <p className="legals">Politicas y Seguridad</p>
+          <p className="legals">Como funciona YouTube</p>
+          <p className="legals">Prueba funciones nuevas</p>
+          <span className="copytight">© 2023 Google LLC</span>
         </div>
       </div>
     );

@@ -2,8 +2,8 @@
 .menu{
     @include themify($themes){
         flex:1;
-        background-color: themed('bgSoft');
-        height: 100vh;
+        background-color: themed('bg');
+        
         color: themed('textColor');
         font-size:14px;
         position: sticky;
@@ -12,7 +12,13 @@
             padding: 18px 26px;
             hr{
                 margin:15px 0px;
-                border: 0.5px solid themed('border');
+                border: 0.5px solid rgba(255, 255, 255, 0.2);
+            }
+            h2{
+                font-size: 14px;
+                font-weight: 500;
+                color:themed('textColorSoft');
+                margin-bottom: 20px;
             }
             .logo{
                 display:flex;
@@ -32,21 +38,8 @@
                 cursor: pointer;
                 padding: 7.5px;
             }
-            .login{
-                button{
-                    padding: 5px 15px;
-                    background-color: transparent;
-                    border: 1px solid #3ea6ff;
-                    color: #3ea6ff;
-                    border-radius: 3px;
-                    font-weight: 500;
-                    margin-top: 10px;
-                    cursor:pointer;
-                    display: flex;
-                    align-items: center;
-                    gap: 5px;
-                }
-            }
+            .legals{}
+            .copyright{}
         }
     }
 }

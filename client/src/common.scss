@@ -2,20 +2,16 @@ $themes:(
     light:(
         textColor:#000,
         bg: white,
-        logo: rgb(190, 52, 52),
         bgSoft: rgb(229, 229, 227),
         textColorSoft: rgb(73, 69, 69),
-        buttonBg: slateblue,
-        border:lightgrey
+        buttonColor:#003ff2
     ),
     dark:(
-        textColor:#fff,
-        bg: #202020,
-        logo: #fff,
+        textColor:#f1f1f1,
+        bg: #0f0f0f,
         bgSoft: #181818,
         textColorSoft: rgb(191, 190, 190),
-        buttonBg: #4f4a6c,
-        border:#373737
+        buttonColor:#3ea6ff
     ),
 );
 

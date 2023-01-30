@@ -8,14 +8,15 @@
             display: flex;
             align-items: center;
             .search{
+                input{}
     
             }
         }
         button{
             padding: 5px 15px;
             background-color: transparent;
-            border: 1px solid #3ea6ff;
-            color: #3ea6ff;
+            border: 1px solid themed('buttonColor');
+            color: themed('buttonColor');
             border-radius: 3px;
             font-weight: 500;
             margin-top: 10px;
