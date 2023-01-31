@@ -137,39 +137,6 @@ function Home(){
             avatar: 'https://yt3.ggpht.com/ytc/AL5GRJW6fobZK0VK-aBTyGiVjTB6It9BtIYWMvncEhFWEA=s68-c-k-c0x00ffffff-no-rj',
             link: 'https://www.youtube.com/watch?v=xHlqSABb7pI&ab_channel=BeyondSkys'
         },
-        {
-            id: 13,
-            image: 'https://i.ytimg.com/vi/xHlqSABb7pI/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLATDy_Gmu6kG7e0uo4puP8wujKjiw',
-            length: '2:00:00',
-            title: 'Land of Rising Sun',
-            channel: 'Beyond Skys',
-            views: 613382,
-            uploadDate: '2023/01/25 08:15:13',
-            avatar: 'https://yt3.ggpht.com/ytc/AL5GRJW6fobZK0VK-aBTyGiVjTB6It9BtIYWMvncEhFWEA=s68-c-k-c0x00ffffff-no-rj',
-            link: 'https://www.youtube.com/watch?v=xHlqSABb7pI&ab_channel=BeyondSkys'
-        },
-        {
-            id: 14,
-            image: 'https://i.ytimg.com/vi/xHlqSABb7pI/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLATDy_Gmu6kG7e0uo4puP8wujKjiw',
-            length: '2:00:00',
-            title: 'Land of Rising Sun',
-            channel: 'Beyond Skys',
-            views: 613382,
-            uploadDate: '2023/01/25 08:15:13',
-            avatar: 'https://yt3.ggpht.com/ytc/AL5GRJW6fobZK0VK-aBTyGiVjTB6It9BtIYWMvncEhFWEA=s68-c-k-c0x00ffffff-no-rj',
-            link: 'https://www.youtube.com/watch?v=xHlqSABb7pI&ab_channel=BeyondSkys'
-        },
-        {
-            id: 15,
-            image: 'https://i.ytimg.com/vi/xHlqSABb7pI/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLATDy_Gmu6kG7e0uo4puP8wujKjiw',
-            length: '2:00:00',
-            title: 'Land of Rising Sun',
-            channel: 'Beyond Skys',
-            views: 613382,
-            uploadDate: '2023/01/25 08:15:13',
-            avatar: 'https://yt3.ggpht.com/ytc/AL5GRJW6fobZK0VK-aBTyGiVjTB6It9BtIYWMvncEhFWEA=s68-c-k-c0x00ffffff-no-rj',
-            link: 'https://www.youtube.com/watch?v=xHlqSABb7pI&ab_channel=BeyondSkys'
-        },
     ]
 
     return(

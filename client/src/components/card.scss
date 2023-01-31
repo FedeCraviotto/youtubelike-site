@@ -1,7 +1,8 @@
 @import "../common.scss";
 .card {
+  
   @include themify($themes) {
-    width: 360px;
+    width: 330px;
     margin-bottom: 45px;
     cursor: pointer;
     img {

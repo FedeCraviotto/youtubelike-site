@@ -10,6 +10,7 @@
             align-items: center;
             justify-content: flex-end;
             .search{
+                position: relative;
                 width: 43%;
                 height: 40px;
                 margin: auto;
@@ -34,6 +35,12 @@
                     color: themed('textColor');
                     background-color: rgba(255,255,255,0.08);
                     padding: 12px;
+                }
+                .microphone{
+                    position: absolute;
+                    background-color: rgba(255,255,255,0.02);
+                    right: -65px;
+                    border-radius: 50%;
                 }
     
             }
