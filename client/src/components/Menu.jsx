@@ -21,7 +21,7 @@ import { useContext } from "react";
 
 function Menu(){
 
-    const {toggleMode} = useContext(DarkModeContext);
+    const {toggleMode, darkMode} = useContext(DarkModeContext);
     return (
       <div className="menu">
         <div className="wrapper">
@@ -60,7 +60,7 @@ function Menu(){
           </div>
           <div className="item">
             <HistoryOutlinedIcon />
-            <span>Videos que me gustan dddddddddddddddddddddddddddddddddddd</span>
+            <span>Videos que me gustan</span>
           </div>
           <hr />
           <h2> Suscripciones</h2>
@@ -155,7 +155,7 @@ function Menu(){
           </div>
           <div className="item" onClick={toggleMode}>
               <SettingsBrightnessOutlinedIcon />
-              Toggle Mode
+              {darkMode ? 'Modo Claro' : 'Modo Oscuro'}
           </div>
           <hr />
           <p className="legals">Acerca de Prensa</p>
