@@ -4,21 +4,14 @@
         position: sticky;
         top: 0;
         background-color: themed('bg');
-        height: 75px;
+        height: 105px;
         .wrapper{
             display: flex;
             align-items: center;
-            height: 100%;
-            padding: 0px 20px;
             justify-content: flex-end;
-            position: relative;
             .search{
                 width: 43%;
                 height: 40px;
-                // flex: 4;
-                // position: absolute;
-                // left: 0px;
-                // right: 0;
                 margin: auto;
                 display: flex;
                 align-items: center;
