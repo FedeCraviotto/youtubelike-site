@@ -9,8 +9,10 @@ function Navbar(){
         <div className="navbar">
             <div className="wrapper">
                 <div className="search">
-                    <input type="text" placeholder="Search"/>
-                    <SearchOutlinedIcon />
+                    <input type="text" placeholder="Buscar"/>
+                    <button>
+                        <SearchOutlinedIcon />
+                    </button>
                 </div>
                 <div className="actions">
                     <NotificationsOutlinedIcon />

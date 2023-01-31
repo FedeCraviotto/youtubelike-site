@@ -3,7 +3,6 @@
   @include themify($themes) {
     flex: 1;
     background-color: themed("bg");
-
     color: themed("textColor");
     font-size: 14px;
     .wrapper {

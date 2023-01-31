@@ -1,0 +1,6 @@
+@use '../common.scss';
+.menu{
+    @include themify($themes){
+        
+    }
+}
