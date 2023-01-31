@@ -60,7 +60,7 @@ function Menu(){
           </div>
           <div className="item">
             <HistoryOutlinedIcon />
-            Videos que me gustan
+            <span>Videos que me gustan dddddddddddddddddddddddddddddddddddd</span>
           </div>
           <hr />
           <h2> Suscripciones</h2>

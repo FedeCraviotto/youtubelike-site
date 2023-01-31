@@ -1,8 +1,10 @@
 @import "./common.scss";
 .app {
   @include themify($themes) {
+    position: relative;
     display: flex;
     .main {
+      margin-left: calc(100%/7);
       flex: 7;
       background-color: themed("bgSoft");
       color: themed("textColor");
