@@ -5,6 +5,9 @@ import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined
 import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined';
 import VideoCallOutlinedIcon from '@mui/icons-material/VideoCallOutlined';
 import KeyboardVoiceOutlinedIcon from '@mui/icons-material/KeyboardVoiceOutlined';
+
+// import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
+
 function Navbar(){
     return(
         <div className="navbar">

@@ -95,9 +95,15 @@
                     }
                 }
             }
+            .video-description{
+                .showInfo{
+                    cursor: pointer;
+                }
+            }
         }
         .recommendations{
             flex: 2;
         }
     }
+    
 }
