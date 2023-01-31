@@ -6,6 +6,9 @@
       flex: 7;
       background-color: themed("bgSoft");
       color: themed("textColor");
+      .wrapper{
+        padding: 22px 96px;
+      }
     }
   }
 }

@@ -1,6 +1,9 @@
-@use '../common.scss';
-.menu{
+@import '../common.scss';
+.home{
     @include themify($themes){
-        
+        background-color: themify('bgSoft');
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
     }
 }

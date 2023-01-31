@@ -1,4 +1,4 @@
-@use '../common.scss';
+@import '../common.scss';
 .reproducer{
     @include themify($themes){
         

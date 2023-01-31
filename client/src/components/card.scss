@@ -1,0 +1,29 @@
+@import "../common.scss";
+.card {
+  @include themify($themes) {
+    width: 360px;
+    margin-bottom: 45px;
+    cursor: pointer;
+    img {
+      width: 100%;
+      height: 202px;
+      background-color: #999;
+    }
+    .details {
+        display: flex;
+        margin-top: 16px;
+        gap: 12px;
+      .avatar {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+      }
+      .info {
+        
+        .title{}
+        .channel{}
+        .stats{}
+      }
+    }
+  }
+}
