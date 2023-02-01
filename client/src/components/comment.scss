@@ -1,0 +1,68 @@
+@import "../common.scss";
+.comment {
+  @include themify($themes) {
+    display: flex;
+    margin-top: 20px;
+    .comment-info {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      p {
+        &:nth-child(1) {
+          font-weight: 500;
+          color: themed("textColor");
+          span {
+            cursor: pointer;
+            margin-left: 5px;
+            font-size: 14px;
+            color: rgb(165, 158, 158);
+            transition: color 200ms;
+            &:hover {
+              color: rgb(214, 211, 211);
+            }
+          }
+        }
+      }
+      flex-grow: 34;
+      input {
+        padding-bottom: 5px;
+        font-size: 18px;
+        background-color: themed("bg");
+        color: themed("textColor");
+        outline: none;
+        width: 100%;
+        border: none;
+        border-bottom: 0.5px solid gray;
+        transition: all 200ms;
+        &:focus {
+          border-bottom: 0.5px solid rgba(249, 249, 249, 0.91);
+        }
+      }
+      .reactions {
+        margin-top: 10px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 10px;
+        svg {
+          font-size: 30px;
+        }
+        button {
+          font-size: 14px;
+          background-color: transparent;
+          border: none;
+          border-radius: 20px 20px 20px 20px;
+          color: themed("textColor");
+          padding: 8px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          transition: all 200ms;
+          &:hover {
+            background-color: rgba(255, 255, 255, 0.28);
+          }
+        }
+      }
+    }
+  }
+}

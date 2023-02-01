@@ -1,6 +1,7 @@
 @import "./common.scss";
 .app {
   @include themify($themes) {
+    background-color: themed('bg');
     position: relative;
     display: flex;
     .main {
@@ -10,6 +11,7 @@
       color: themed("textColor");
       .wrapper{
         padding: 10px 96px;
+        background-color: themed('bg');
       }
     }
   }

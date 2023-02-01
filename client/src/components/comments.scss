@@ -1,0 +1,103 @@
+@import "../common.scss";
+.container {
+  margin: 20px 0px;
+  @include themify($themes) {
+    a {
+      text-decoration: none;
+    }
+    .header {
+      display: flex;
+      gap: 25px;
+      font-size: 20px;
+      span {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
+    }
+    .comments {
+      padding: 20px 0px;
+      display: flex;
+      flex-direction: column;
+      a {
+        flex-grow: 1;
+        img {
+          width: 56px;
+          height: 56px;
+          border-radius: 50%;
+        }
+      }
+      .postComment {
+        display: flex;
+
+        .comment-info {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          p {
+            &:nth-child(1) {
+              font-weight: 500;
+              color: themed("textColor");
+              span {
+                cursor: pointer;
+                margin-left: 5px;
+                font-size: 14px;
+                color: rgb(165, 158, 158);
+                transition: color 200ms;
+                &:hover {
+                  color: rgb(214, 211, 211);
+                }
+              }
+            }
+          }
+          flex-grow: 34;
+          input {
+            padding-bottom: 5px;
+            font-size: 18px;
+            background-color: themed("bg");
+            color: themed("textColor");
+            outline: none;
+            width: 100%;
+            border: none;
+            border-bottom: 0.5px solid gray;
+            transition: all 200ms;
+            &:focus {
+              border-bottom: 0.5px solid rgba(249, 249, 249, 0.91);
+            }
+          }
+          .actions {
+            margin-top: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            svg {
+              font-size: 30px;
+            }
+            .buttons {
+              display: flex;
+              button {
+                font-size: 18px;
+                background-color: rgba(255, 255, 255, 0.08);
+                border-radius: 20px 20px 20px 20px;
+                border: 0.5px solid rgba(255, 255, 255, 0.08);
+                color: themed("textColor");
+                padding: 8px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                transition: all 200ms;
+                &:nth-child(1) {
+                  background-color: transparent;
+                  border: none;
+                }
+                &:hover {
+                  background-color: rgba(255, 255, 255, 0.28);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

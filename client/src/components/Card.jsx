@@ -6,11 +6,9 @@ import 'moment/locale/es';
 moment.locale('es');
 function Card({video}){
 
-    console.log(moment(video.uploadDate))
-    
     return (
         <div className="card">
-            <Link to={video.link}>
+            <Link to={`/video/${video.id}`}>
                 <img src={video.image} alt="" />
             </Link>
             <div className="details">

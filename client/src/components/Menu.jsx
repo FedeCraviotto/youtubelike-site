@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import './menu.scss';
 import YoutubeLogo from '../images/yt-med.png';
 import HomeIcon from "@mui/icons-material/Home";
@@ -17,15 +17,18 @@ import FlagOutlinedIcon from "@mui/icons-material/FlagOutlined";
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import SettingsBrightnessOutlinedIcon from "@mui/icons-material/SettingsBrightnessOutlined";
 import { DarkModeContext } from '../context/darkModeContext.js';
-import { useContext } from "react";
 
 function Menu(){
+
+  function handleRedirect(){
+    window.location.replace('/');
+  }
 
     const {toggleMode, darkMode} = useContext(DarkModeContext);
     return (
       <div className="menu">
         <div className="wrapper">
-          <div className="logo">
+          <div className="logo" onClick={handleRedirect}>
             <img src={YoutubeLogo} alt="" />
             YouTube
           </div>

@@ -1,9 +1,15 @@
 import React from "react";
 import './extendedInfo.scss';
-function ExtendedInfo(){
+import moment from 'moment';
+import 'moment/locale/es';
+moment.locale('es');
+
+function ExtendedInfo({extendedDescription, open, setOpen}){
     return(
         <div className="extended-info">
-            Extended Info
+            <p>{extendedDescription}</p>
+            
+            <p onClick={()=> setOpen(!open)} className='showInfo'>Mostrar menos</p>
         </div>
     )
 }
