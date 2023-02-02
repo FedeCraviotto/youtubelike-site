@@ -7,7 +7,7 @@ function Home(){
     const dummy = [
         {
             id: 1,
-            image: 'https://i.ytimg.com/vi/xHlqSABb7pI/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLATDy_Gmu6kG7e0uo4puP8wujKjiw',
+            image: 'https://i.ytimg.com/vi/WYp9Eo9T3BA/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLA70fLxAnFjKz506cZ_Naivou-HYA',
             length: '2:00:00',
             title: 'Land of Rising Sun',
             channel: 'Beyond Skys',
@@ -18,7 +18,7 @@ function Home(){
         },
         {
             id: 2,
-            image: 'https://i.ytimg.com/vi/xHlqSABb7pI/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLATDy_Gmu6kG7e0uo4puP8wujKjiw',
+            image: 'https://i.ytimg.com/vi/WYp9Eo9T3BA/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLA70fLxAnFjKz506cZ_Naivou-HYA',
             length: '2:00:00',
             title: 'Land of Rising Sun',
             channel: 'Beyond Skys',
@@ -29,7 +29,7 @@ function Home(){
         },
         {
             id: 3,
-            image: 'https://i.ytimg.com/vi/xHlqSABb7pI/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLATDy_Gmu6kG7e0uo4puP8wujKjiw',
+            image: 'https://i.ytimg.com/vi/WYp9Eo9T3BA/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLA70fLxAnFjKz506cZ_Naivou-HYA',
             length: '2:00:00',
             title: 'Land of Rising Sun',
             channel: 'Beyond Skys',
@@ -40,7 +40,7 @@ function Home(){
         },
         {
             id: 4,
-            image: 'https://i.ytimg.com/vi/xHlqSABb7pI/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLATDy_Gmu6kG7e0uo4puP8wujKjiw',
+            image: 'https://i.ytimg.com/vi/WYp9Eo9T3BA/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLA70fLxAnFjKz506cZ_Naivou-HYA',
             length: '2:00:00',
             title: 'Land of Rising Sun',
             channel: 'Beyond Skys',
@@ -51,7 +51,7 @@ function Home(){
         },
         {
             id: 5,
-            image: 'https://i.ytimg.com/vi/xHlqSABb7pI/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLATDy_Gmu6kG7e0uo4puP8wujKjiw',
+            image: 'https://i.ytimg.com/vi/WYp9Eo9T3BA/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLA70fLxAnFjKz506cZ_Naivou-HYA',
             length: '2:00:00',
             title: 'Land of Rising Sun',
             channel: 'Beyond Skys',
@@ -62,7 +62,7 @@ function Home(){
         },
         {
             id: 6,
-            image: 'https://i.ytimg.com/vi/xHlqSABb7pI/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLATDy_Gmu6kG7e0uo4puP8wujKjiw',
+            image: 'https://i.ytimg.com/vi/WYp9Eo9T3BA/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLA70fLxAnFjKz506cZ_Naivou-HYA',
             length: '2:00:00',
             title: 'Land of Rising Sun',
             channel: 'Beyond Skys',
@@ -73,7 +73,7 @@ function Home(){
         },
         {
             id: 7,
-            image: 'https://i.ytimg.com/vi/xHlqSABb7pI/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLATDy_Gmu6kG7e0uo4puP8wujKjiw',
+            image: 'https://i.ytimg.com/vi/WYp9Eo9T3BA/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLA70fLxAnFjKz506cZ_Naivou-HYA',
             length: '2:00:00',
             title: 'Land of Rising Sun',
             channel: 'Beyond Skys',
@@ -84,7 +84,7 @@ function Home(){
         },
         {
             id: 8,
-            image: 'https://i.ytimg.com/vi/xHlqSABb7pI/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLATDy_Gmu6kG7e0uo4puP8wujKjiw',
+            image: 'https://i.ytimg.com/vi/WYp9Eo9T3BA/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLA70fLxAnFjKz506cZ_Naivou-HYA',
             length: '2:00:00',
             title: 'Land of Rising Sun',
             channel: 'Beyond Skys',
@@ -95,7 +95,7 @@ function Home(){
         },
         {
             id: 9,
-            image: 'https://i.ytimg.com/vi/xHlqSABb7pI/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLATDy_Gmu6kG7e0uo4puP8wujKjiw',
+            image: 'https://i.ytimg.com/vi/WYp9Eo9T3BA/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLA70fLxAnFjKz506cZ_Naivou-HYA',
             length: '2:00:00',
             title: 'Land of Rising Sun',
             channel: 'Beyond Skys',
@@ -106,7 +106,7 @@ function Home(){
         },
         {
             id: 10,
-            image: 'https://i.ytimg.com/vi/xHlqSABb7pI/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLATDy_Gmu6kG7e0uo4puP8wujKjiw',
+            image: 'https://i.ytimg.com/vi/WYp9Eo9T3BA/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLA70fLxAnFjKz506cZ_Naivou-HYA',
             length: '2:00:00',
             title: 'Land of Rising Sun',
             channel: 'Beyond Skys',
@@ -117,7 +117,7 @@ function Home(){
         },
         {
             id: 11,
-            image: 'https://i.ytimg.com/vi/xHlqSABb7pI/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLATDy_Gmu6kG7e0uo4puP8wujKjiw',
+            image: 'https://i.ytimg.com/vi/WYp9Eo9T3BA/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLA70fLxAnFjKz506cZ_Naivou-HYA',
             length: '2:00:00',
             title: 'Land of Rising Sun',
             channel: 'Beyond Skys',
@@ -128,7 +128,7 @@ function Home(){
         },
         {
             id: 12,
-            image: 'https://i.ytimg.com/vi/xHlqSABb7pI/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLATDy_Gmu6kG7e0uo4puP8wujKjiw',
+            image: 'https://i.ytimg.com/vi/WYp9Eo9T3BA/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLA70fLxAnFjKz506cZ_Naivou-HYA',
             length: '2:00:00',
             title: 'Land of Rising Sun',
             channel: 'Beyond Skys',
@@ -142,7 +142,7 @@ function Home(){
     return(
         <div className="home">
             {dummy.map((item) => (
-                <Card key={item.id} video={item}/>
+                <Card key={item.id} video={item} type='medium'/>
             ))}
         </div>
     )

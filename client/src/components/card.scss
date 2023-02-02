@@ -1,11 +1,12 @@
 @import "../common.scss";
 .card {
-  
   @include themify($themes) {
     width: 330px;
     margin-bottom: 45px;
     cursor: pointer;
     img {
+      border-radius: 10px;
+      object-fit: cover;
       width: 100%;
       height: 202px;
       background-color: #999;
@@ -24,16 +25,49 @@
         .title{
             font-size: 16px;
             font-weight: 500;
-            color: themify('textColor')
+            color: themed('textColor')
         }
         .channel{
             font-size: 14px;
-            color: themify('textColorSoft');
+            color: themed('textColor');
             margin: 6px 0px;
         }
         .stats{
             font-size: 14px;
-            color: themify('textColorSoft');
+            color: themed('textColor');
+        }
+      }
+    }
+    &Sm{
+      width: 100%;
+      display: flex;
+      margin-bottom: 10px;
+      a{
+        flex: 1;
+        overflow: hidden;
+        img{
+          border-radius: 25px;
+          object-fit: cover;          
+          height: 100px;
+        }
+      }
+      .details{
+        flex: 1.2;
+        margin-top: 0px;
+        .avatar{
+          display: none;
+        }
+        .info{
+          width: 100%;
+          .channel{
+            font-size: 14px;
+            font-weight: normal;
+            color: themed('textColorSoft');
+        }
+        .stats{
+            font-size: 14px;
+            color: themed('textColorSoft');
+        }
         }
       }
     }

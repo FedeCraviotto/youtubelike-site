@@ -12,13 +12,13 @@ import { useState } from "react";
 import ExtendedInfo from '../components/ExtendedInfo';
 import Comments from '../components/Comments';
 import ReactPlayer from "react-player";
+import Card from "../components/Card";
 
 function Reproducer({ video }) {
   const [openExtendedInfo, setOpenExtendedInfo] = useState(false)
   const dummyVideo = {
     id: 12,
-    image:
-      "https://i.ytimg.com/vi/xHlqSABb7pI/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLATDy_Gmu6kG7e0uo4puP8wujKjiw",
+    image:"https://i.ytimg.com/vi/WYp9Eo9T3BA/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLA70fLxAnFjKz506cZ_Naivou-HYA",
     length: "2:00:00",
     title: "Land of Rising Sun",
     channel: "Beyond Skys",
@@ -147,7 +147,21 @@ function Reproducer({ video }) {
             <Comments comments={dummyVideo.comments}/>
         </div>
       </div>
-      <div className="recommendations">recommendations</div>
+      <div className="recommendations">
+        <Card video={dummyVideo} type="small"/>
+        <Card video={dummyVideo} type="small"/>
+        <Card video={dummyVideo} type="small"/>
+        <Card video={dummyVideo} type="small"/>
+        <Card video={dummyVideo} type="small"/>
+        <Card video={dummyVideo} type="small"/>
+        <Card video={dummyVideo} type="small"/>
+        <Card video={dummyVideo} type="small"/>
+        <Card video={dummyVideo} type="small"/>
+        <Card video={dummyVideo} type="small"/>
+        <Card video={dummyVideo} type="small"/>
+        <Card video={dummyVideo} type="small"/>
+        <Card video={dummyVideo} type="small"/>
+      </div>
     </div>
   );
 }
