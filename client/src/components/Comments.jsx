@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useRef } from "react";
 import "./comments.scss";
 import ReorderOutlinedIcon from "@mui/icons-material/ReorderOutlined";
 import SentimentVerySatisfiedOutlinedIcon from "@mui/icons-material/SentimentVerySatisfiedOutlined";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import Comment from "./Comment";
+import { useEffect } from "react";
+
 
 function Comments({ comments }) {
+
+  const actionContainer = useRef()
+  const commentButton = useRef();
+
   const dummy = {
     id: 12,
     user: "Dummy",
@@ -17,6 +23,16 @@ function Comments({ comments }) {
   };
 
   const [description, setDescription] = useState("");
+
+  function handleShowActions(){
+    actionContainer.current.style.display="flex";
+  }
+
+  useEffect(()=>{
+    description === '' ? commentButton.current.disabled = false : commentButton.current.disabled = true;
+    console.log(description === '' ? commentButton.current.disabled = false : commentButton.current.disabled = true)
+
+  },[description])
 
   return (
     <div className="container">
@@ -34,6 +50,7 @@ function Comments({ comments }) {
           </Link>
           <div className="comment-info">
             <input
+            onFocus={handleShowActions}
               type="text"
               placeholder="Agrega un comentario..."
               onChange={(e) => {
@@ -41,11 +58,11 @@ function Comments({ comments }) {
               }}
               value={description}
             />
-            <div className="actions">
+            <div className="actions" ref={actionContainer}>
               <SentimentVerySatisfiedOutlinedIcon />
               <div className="buttons">
                 <button>Cancelar</button>
-                <button disabled>Comentar</button>
+                <button disabled className="commentButton" ref={commentButton}>Comentar</button>
               </div>
             </div>
           </div>

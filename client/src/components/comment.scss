@@ -11,16 +11,19 @@
         &:nth-child(1) {
           font-weight: 500;
           color: themed("textColor");
+          font-size: 12px;
           span {
             cursor: pointer;
             margin-left: 5px;
-            font-size: 14px;
             color: rgb(165, 158, 158);
             transition: color 200ms;
             &:hover {
               color: rgb(214, 211, 211);
             }
           }
+        }
+        &:nth-child(2) {
+          font-size: 14px;
         }
       }
       flex-grow: 34;
@@ -44,11 +47,12 @@
         justify-content: flex-start;
         align-items: center;
         gap: 10px;
+        font-size: 12px;
         svg {
-          font-size: 30px;
+          font-size: 20px;
         }
         button {
-          font-size: 14px;
+          font-size: 12px;
           background-color: transparent;
           border: none;
           border-radius: 20px 20px 20px 20px;

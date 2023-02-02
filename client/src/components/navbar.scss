@@ -15,9 +15,12 @@
             justify-content: flex-end;
             .burguer{
                 font-size: 32px;
+                margin-right: 8px;
+                padding: 5px;
+                border-radius: 50%;
                 transition: transform 150ms ease 500ms;
                 cursor: pointer;
-                transition: background-color 300ms;
+                transition: background-color 100ms;
                 &:hover{
                     background-color: rgba(255, 255, 255, 0.078);
                 }
@@ -81,6 +84,9 @@
                 gap: 20px;
                 width: 220px;
                 background-color: themed('bg');
+                svg{
+                    cursor: pointer;
+                }
             }
         }
         button{
