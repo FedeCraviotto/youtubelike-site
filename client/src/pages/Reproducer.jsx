@@ -85,7 +85,7 @@ function Reproducer({ video }) {
             playing={true}
             url={dummyVideo.link}
             width='100%'
-            height='720px'
+            height='520px'
             controls={true}
           />
           <h2 className="title">{dummyVideo.title}</h2>

@@ -5,14 +5,14 @@
     display: flex;
     gap: 24px;
         .content{
-            flex: 5;
+            flex: 2;
             .video-wrapper{
                 display: flex;
                 flex-direction: column;
                 gap: 20px;
                 .title{
                     font-weight: 500;
-                    font-size: 26px;
+                    font-size: 20px;
                 }
                 button{
                     cursor: pointer;
@@ -112,7 +112,7 @@
             }
         }
         .recommendations{
-            flex: 2;
+            flex: 1;
         }
     }
     

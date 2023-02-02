@@ -5,12 +5,22 @@
     position: relative;
     display: flex;
     .main {
-      margin-left: calc(100%/7);
       flex: 7;
       background-color: themed("bgSoft");
       color: themed("textColor");
-      .wrapper{
-        padding: 10px 96px;
+      position: relative;
+      .backdrop{
+        position: absolute;
+        background-color: #000;
+        opacity: 0;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        z-index: -1;
+      }
+      .main-wrapper{
+        padding: 10px 76px;
         background-color: themed('bg');
       }
     }

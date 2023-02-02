@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import './menu.scss';
 import YoutubeLogo from '../images/yt-med.png';
 import HomeIcon from "@mui/icons-material/Home";
@@ -17,21 +17,38 @@ import FlagOutlinedIcon from "@mui/icons-material/FlagOutlined";
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import SettingsBrightnessOutlinedIcon from "@mui/icons-material/SettingsBrightnessOutlined";
 import { DarkModeContext } from '../context/darkModeContext.js';
+import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 
-function Menu(){
+function Menu({ menuOpen, setMenuOpen, menuBackdrop }){
+  
+  const sideMenu = useRef()
+
+  useEffect(()=>{
+    menuOpen === true ? sideMenu.current.style.transform = "translateX(0px)" : sideMenu.current.style.transform = "translateX(-100%)";
+  }, [menuOpen])
 
   function handleRedirect(){
     window.location.replace('/');
   }
 
+  function handleMenuClose(){
+    setMenuOpen(false);
+    menuBackdrop.current.style.opacity = "0";
+    menuBackdrop.current.style.zIndex = "-1";
+  }
+
     const {toggleMode, darkMode} = useContext(DarkModeContext);
     return (
-      <div className="menu">
+      <div className="menu" ref={sideMenu}>
         <div className="wrapper">
-          <div className="logo" onClick={handleRedirect}>
-            <img src={YoutubeLogo} alt="" />
-            YouTube
-          </div>
+
+          <div className="burguer-wrapper">
+            <MenuOutlinedIcon className="burguer" onClick={handleMenuClose}/>
+            <div className="logo" onClick={handleRedirect}>
+              <img src={YoutubeLogo} alt="" />
+              YouTube
+            </div>
+          </div>    
           <div className="item">
             <HomeIcon />
             Principal
@@ -66,7 +83,7 @@ function Menu(){
             <span>Videos que me gustan</span>
           </div>
           <hr />
-          <h2> Suscripciones</h2>
+          <h2>Suscripciones</h2>
           <div className="item">
             <LibraryMusicOutlinedIcon />
             Channel 1
@@ -173,9 +190,10 @@ function Menu(){
           <p className="legals">Politicas y Seguridad</p>
           <p className="legals">Como funciona YouTube</p>
           <p className="legals">Prueba funciones nuevas</p>
-          <span className="copytight">© 2023 Google LLC</span>
+          <p className="copyright">© 2023 Google LLC</p>
         </div>
       </div>
     );
 }
+
 export default Menu;

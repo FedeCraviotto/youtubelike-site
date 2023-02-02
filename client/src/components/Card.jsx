@@ -1,9 +1,11 @@
 import React from "react";
 import "./card.scss";
 import { Link } from "react-router-dom";
+import MoreVertOutlinedIcon from '@mui/icons-material/MoreVertOutlined';
 import moment from "moment";
 import "moment/locale/es";
 moment.locale("es");
+
 function Card({ video, type }) {
   return (
     <div className={`${type === "small" ? "card cardSm" : "card"}`}>
@@ -26,6 +28,7 @@ function Card({ video, type }) {
               {moment(video.uploadDate).fromNow()}
             </span>
           </div>
+          <MoreVertOutlinedIcon id="recommendation-options" />
         </div>
       </div>
     </div>
