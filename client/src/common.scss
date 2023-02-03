@@ -5,7 +5,8 @@ $themes:(
         bgSoft: rgb(243, 243, 243),
         textColorSoft: rgb(73, 69, 69),
         buttonColor:#003ff2,
-        border: rgba(63, 63, 63, 0.508)
+        border: rgba(63, 63, 63, 0.508),
+        bgDropdown:rgb(243, 243, 243),
     ),
     dark:(
         textColor:#f1f1f1,
@@ -13,7 +14,8 @@ $themes:(
         bgSoft: #0f0f0f,
         textColorSoft: rgb(172, 166, 166),
         buttonColor:#3ea6ff,
-        border: rgba(255, 255, 255, 0.2)
+        border: rgba(255, 255, 255, 0.2),
+        bgDropdown: rgb(39, 39, 39)
     ),
 );
 

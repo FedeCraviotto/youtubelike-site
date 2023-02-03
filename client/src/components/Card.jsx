@@ -28,7 +28,7 @@ function Card({ video, type }) {
               {moment(video.uploadDate).fromNow()}
             </span>
           </div>
-          <MoreVertOutlinedIcon id="recommendation-options" />
+          {type === 'small' && <MoreVertOutlinedIcon id="recommendation-options" />}
         </div>
       </div>
     </div>

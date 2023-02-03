@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import './menu.scss';
 import YoutubeLogo from '../images/yt-med.png';
 import HomeIcon from "@mui/icons-material/Home";
@@ -15,8 +15,7 @@ import LiveTvOutlinedIcon from "@mui/icons-material/LiveTvOutlined";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import FlagOutlinedIcon from "@mui/icons-material/FlagOutlined";
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
-import SettingsBrightnessOutlinedIcon from "@mui/icons-material/SettingsBrightnessOutlined";
-import { DarkModeContext } from '../context/darkModeContext.js';
+
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 
 function Menu({ menuOpen, setMenuOpen, menuBackdrop }){
@@ -37,7 +36,7 @@ function Menu({ menuOpen, setMenuOpen, menuBackdrop }){
     menuBackdrop.current.style.zIndex = "-1";
   }
 
-    const {toggleMode, darkMode} = useContext(DarkModeContext);
+    
     return (
       <div className="menu" ref={sideMenu}>
         <div className="wrapper">
@@ -173,10 +172,7 @@ function Menu({ menuOpen, setMenuOpen, menuBackdrop }){
             <HelpOutlineOutlinedIcon />
             Enviar comentarios
           </div>
-          <div className="item" onClick={toggleMode}>
-              <SettingsBrightnessOutlinedIcon />
-              {darkMode ? 'Modo Claro' : 'Modo Oscuro'}
-          </div>
+          
           <hr />
           <p className="legals">Acerca de Prensa</p>
           <p className="legals">Derechos de Autor</p>
