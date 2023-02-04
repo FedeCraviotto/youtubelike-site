@@ -9,34 +9,53 @@ import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import MoreVertOutlinedIcon from "@mui/icons-material/MoreVertOutlined";
 import SettingsBrightnessOutlinedIcon from "@mui/icons-material/SettingsBrightnessOutlined";
 import { DarkModeContext } from "../context/darkModeContext.js";
-import { useContext } from "react";
-import { useState } from "react";
-import { useEffect } from "react";
-import { useRef } from "react";
+import { useContext, useState, useEffect, useRef } from "react";
+import jwt_decode from 'jwt-decode';
 
 function Navbar({ setMenuOpen, menuBackdrop }) {
+
+  // Object.keys(myObject).length !== 0
+
+  const [userObject, setUserObject] = useState({});
+
   const [userLogged, setUserLogged] = useState(false);
 
   const [configMenuOpen, setConfigMenuOpen] = useState(false);
 
-  const [currentUser, setCurrentUser] = useState({
-    id: 44,
-    cover:
-      "https://i.ytimg.com/vi/WYp9Eo9T3BA/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLA70fLxAnFjKz506cZ_Naivou-HYA",
-    userName: "Fede Craviotto",
-    email: "fc@gmail.com",
-    avatar:
-      "https://yt3.ggpht.com/ytc/AL5GRJW6fobZK0VK-aBTyGiVjTB6It9BtIYWMvncEhFWEA=s68-c-k-c0x00ffffff-no-rj",
-  });
-
   const configMenuref = useRef();
 
+  useEffect(()=>{
+    /* global google */
+    google.accounts.id.initialize({
+      client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
+      callback: handleCallbackResponse
+    })
+
+  }, [])
+
+  useEffect(()=>{
+    !userLogged && google.accounts.id.renderButton(
+      document.getElementById('signInDiv'),
+      {theme : 'outline', size: 'large'}
+    )
+  }, [userLogged])
+  
   useEffect(()=>{
       configMenuOpen ? configMenuref.current.style.display = 'flex' : configMenuref.current.style.display = 'none';
   }, [configMenuOpen])
 
   function handleRedirect() {
     window.location.replace("/");
+  }
+
+  function handleCallbackResponse(response){
+    console.log(response.credential)
+    let decodedUserInfo = jwt_decode(response.credential)
+    if ((typeof decodedUserInfo) === 'object') {
+      setUserObject(decodedUserInfo);
+      setUserLogged(true);
+      console.log(decodedUserInfo)  
+    }
   }
 
   function handleMenuOpen() {
@@ -72,20 +91,27 @@ function Navbar({ setMenuOpen, menuBackdrop }) {
             {darkMode ? "Modo Claro" : "Modo Oscuro"}
             </li>
             {userLogged && 
-            <li className="item"onClick={()=> setUserLogged(false)}>
+            <li className="item"onClick={()=> {
+              setUserLogged(false);
+              setUserObject({});
+              }}>
             <SettingsBrightnessOutlinedIcon />
             Logout
             </li> }
             
           </ul>
           {!userLogged ? (
+            // <>
+            //   <MoreVertOutlinedIcon onClick={() =>setConfigMenuOpen(!configMenuOpen)}/>{" "}
+            //   <button onClick={()=> setUserLogged(true)}>
+            //     <AccountCircleOutlinedIcon
+            //     />
+            //     Acceder
+            //   </button>
+            // </>
             <>
               <MoreVertOutlinedIcon onClick={() =>setConfigMenuOpen(!configMenuOpen)}/>{" "}
-              <button onClick={()=> setUserLogged(true)}>
-                <AccountCircleOutlinedIcon
-                />
-                Acceder
-              </button>
+              <div id="signInDiv"></div>
             </>
           ) : (
             <>
@@ -93,8 +119,8 @@ function Navbar({ setMenuOpen, menuBackdrop }) {
               <NotificationsOutlinedIcon />
               <button className="logged-menu">
                 <img
-                  src={currentUser.avatar}
-                  alt={currentUser.userName}
+                  src={userObject?.picture}
+                  alt={userObject?.name}
                   onClick={()=> setConfigMenuOpen(!configMenuOpen)}
                 />
               </button>

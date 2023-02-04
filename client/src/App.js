@@ -13,13 +13,14 @@ import {
 import Home from "./pages/Home";
 import Reproducer from "./pages/Reproducer";
 function App() {
+
   const menuBackdrop = useRef(null)
   // As useRef doesn't triggers component's re-render, we should force the re-render
   // If we don't force the re render, useRef initally will be 'undefined' 
   const [refAcquired, setRefAcquired] = useState(false)
-  
+
   useEffect(() => {
-      setRefAcquired(true)
+    setRefAcquired(true)
   }, []);
 
   function handleMenuClose(){

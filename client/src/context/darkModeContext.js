@@ -8,7 +8,6 @@ export const DarkModeContextProvider = ({ children }) =>{
     );
 
     const toggleMode = () => {
-        console.log('alo')
         setDarkMode(!darkMode);
     }
 
