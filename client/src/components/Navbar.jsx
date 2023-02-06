@@ -12,6 +12,8 @@ import { DarkModeContext } from "../context/darkModeContext.js";
 import { useContext, useState, useEffect, useRef } from "react";
 import jwt_decode from 'jwt-decode';
 
+
+
 function Navbar({ setMenuOpen, menuBackdrop }) {
 
   // Object.keys(myObject).length !== 0
@@ -19,8 +21,11 @@ function Navbar({ setMenuOpen, menuBackdrop }) {
   const [userObject, setUserObject] = useState({});
 
   const [userLogged, setUserLogged] = useState(false);
+  const [currentUser] = useState({});
 
   const [configMenuOpen, setConfigMenuOpen] = useState(false);
+
+  // const [loginOpen, setLoginOpen] = useState(false);
 
   const configMenuref = useRef();
 
@@ -47,6 +52,10 @@ function Navbar({ setMenuOpen, menuBackdrop }) {
   function handleRedirect() {
     window.location.replace("/");
   }
+
+  function handleRedirectToLogin() {
+    window.location.replace("/login");
+  }  
 
   function handleCallbackResponse(response){
     console.log(response.credential)
@@ -101,26 +110,25 @@ function Navbar({ setMenuOpen, menuBackdrop }) {
             
           </ul>
           {!userLogged ? (
-            // <>
-            //   <MoreVertOutlinedIcon onClick={() =>setConfigMenuOpen(!configMenuOpen)}/>{" "}
-            //   <button onClick={()=> setUserLogged(true)}>
-            //     <AccountCircleOutlinedIcon
-            //     />
-            //     Acceder
-            //   </button>
-            // </>
-            <>
+            <div className="login-menu">
               <MoreVertOutlinedIcon onClick={() =>setConfigMenuOpen(!configMenuOpen)}/>{" "}
+              <button onClick={()=> 
+                handleRedirectToLogin()
+                }>
+                <AccountCircleOutlinedIcon
+                />
+                Acceder
+              </button>
               <div id="signInDiv"></div>
-            </>
+            </div>
           ) : (
             <>
               <VideoCallOutlinedIcon />
               <NotificationsOutlinedIcon />
               <button className="logged-menu">
                 <img
-                  src={userObject?.picture}
-                  alt={userObject?.name}
+                  src={userObject?.picture || currentUser.avatar}
+                  alt={userObject?.name || currentUser.name}
                   onClick={()=> setConfigMenuOpen(!configMenuOpen)}
                 />
               </button>

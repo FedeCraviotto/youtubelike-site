@@ -12,6 +12,8 @@ import {
 } from "react-router-dom";
 import Home from "./pages/Home";
 import Reproducer from "./pages/Reproducer";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 function App() {
 
   const menuBackdrop = useRef(null)
@@ -40,6 +42,14 @@ function App() {
     {
       path: "/video/:id",
       element: <Reproducer />,
+    },
+    {
+      path: "/login",
+      element: <Login />,
+    },
+    {
+      path: "/register",
+      element: <Register />,
     },
   ]);
 
