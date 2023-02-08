@@ -10,60 +10,47 @@ import MoreVertOutlinedIcon from "@mui/icons-material/MoreVertOutlined";
 import SettingsBrightnessOutlinedIcon from "@mui/icons-material/SettingsBrightnessOutlined";
 import { DarkModeContext } from "../context/darkModeContext.js";
 import { useContext, useState, useEffect, useRef } from "react";
-import jwt_decode from 'jwt-decode';
-
-
+import jwt_decode from "jwt-decode";
+import { Link } from "react-router-dom";
 
 function Navbar({ setMenuOpen, menuBackdrop }) {
-
   // Object.keys(myObject).length !== 0
-
   const [userObject, setUserObject] = useState({});
-
   const [userLogged, setUserLogged] = useState(false);
   const [currentUser] = useState({});
-
   const [configMenuOpen, setConfigMenuOpen] = useState(false);
-
-  // const [loginOpen, setLoginOpen] = useState(false);
 
   const configMenuref = useRef();
 
-  useEffect(()=>{
+  useEffect(() => {
     /* global google */
     google.accounts.id.initialize({
       client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
-      callback: handleCallbackResponse
-    })
+      callback: handleCallbackResponse,
+    });
+  }, []);
 
-  }, [])
+  useEffect(() => {
+    !userLogged &&
+      google.accounts.id.renderButton(document.getElementById("signInDiv"), {
+        theme: "outline",
+        size: "large",
+      });
+  }, [userLogged]);
 
-  useEffect(()=>{
-    !userLogged && google.accounts.id.renderButton(
-      document.getElementById('signInDiv'),
-      {theme : 'outline', size: 'large'}
-    )
-  }, [userLogged])
-  
-  useEffect(()=>{
-      configMenuOpen ? configMenuref.current.style.display = 'flex' : configMenuref.current.style.display = 'none';
-  }, [configMenuOpen])
+  useEffect(() => {
+    configMenuOpen
+      ? (configMenuref.current.style.display = "flex")
+      : (configMenuref.current.style.display = "none");
+  }, [configMenuOpen]);
 
-  function handleRedirect() {
-    window.location.replace("/");
-  }
-
-  function handleRedirectToLogin() {
-    window.location.replace("/login");
-  }  
-
-  function handleCallbackResponse(response){
-    console.log(response.credential)
-    let decodedUserInfo = jwt_decode(response.credential)
-    if ((typeof decodedUserInfo) === 'object') {
+  function handleCallbackResponse(response) {
+    console.log(response.credential);
+    let decodedUserInfo = jwt_decode(response.credential);
+    if (typeof decodedUserInfo === "object") {
       setUserObject(decodedUserInfo);
       setUserLogged(true);
-      console.log(decodedUserInfo)  
+      console.log(decodedUserInfo);
     }
   }
 
@@ -79,10 +66,12 @@ function Navbar({ setMenuOpen, menuBackdrop }) {
     <div className="navbar">
       <div className="wrapper">
         <MenuOutlinedIcon className="burguer" onClick={handleMenuOpen} />
-        <div className="logo" onClick={handleRedirect}>
-          <img src={YoutubeLogo} alt="" />
-          YouTube
-        </div>
+        <Link to={"/"}>
+          <div className="logo">
+            <img src={YoutubeLogo} alt="youtube logo" />
+            YouTube
+          </div>
+        </Link>
         <div className="search">
           <input type="text" placeholder="Buscar" />
           <button>
@@ -96,28 +85,32 @@ function Navbar({ setMenuOpen, menuBackdrop }) {
         <div className="actions">
           <ul className="config-menu" ref={configMenuref}>
             <li className="item" onClick={toggleMode}>
-            <SettingsBrightnessOutlinedIcon />
-            {darkMode ? "Modo Claro" : "Modo Oscuro"}
+              <SettingsBrightnessOutlinedIcon />
+              {darkMode ? "Modo Claro" : "Modo Oscuro"}
             </li>
-            {userLogged && 
-            <li className="item"onClick={()=> {
-              setUserLogged(false);
-              setUserObject({});
-              }}>
-            <SettingsBrightnessOutlinedIcon />
-            Logout
-            </li> }
-            
+            {userLogged && (
+              <li
+                className="item"
+                onClick={() => {
+                  setUserLogged(false);
+                  setUserObject({});
+                }}
+              >
+                <SettingsBrightnessOutlinedIcon />
+                Logout
+              </li>
+            )}
           </ul>
           {!userLogged ? (
             <div className="login-menu">
-              <MoreVertOutlinedIcon onClick={() =>setConfigMenuOpen(!configMenuOpen)}/>{" "}
-              <button onClick={()=> 
-                handleRedirectToLogin()
-                }>
-                <AccountCircleOutlinedIcon
-                />
-                Acceder
+              <MoreVertOutlinedIcon
+                onClick={() => setConfigMenuOpen(!configMenuOpen)}
+              />{" "}
+              <button>
+                <Link to={"/login"}>
+                  <AccountCircleOutlinedIcon />
+                  Acceder
+                </Link>
               </button>
               <div id="signInDiv"></div>
             </div>
@@ -129,7 +122,7 @@ function Navbar({ setMenuOpen, menuBackdrop }) {
                 <img
                   src={userObject?.picture || currentUser.avatar}
                   alt={userObject?.name || currentUser.name}
-                  onClick={()=> setConfigMenuOpen(!configMenuOpen)}
+                  onClick={() => setConfigMenuOpen(!configMenuOpen)}
                 />
               </button>
             </>
