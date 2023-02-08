@@ -2,7 +2,7 @@
 .login{
     @include themify($themes){
         display: flex;
-        align-items: start;
+        align-items: flex-start;
         justify-content: center;
         height: calc(100vh - 75px);
         background-color: themed('bg');
