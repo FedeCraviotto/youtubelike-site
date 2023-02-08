@@ -11,6 +11,21 @@ import Reproducer from "./pages/Reproducer";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 
+// RouterProvider --> Si tengo vistas aparte de la aplicacion principal.
+// Por ejemplo el Login, Register, ademas de la App ppal, que comparte navbar y etc.
+// Recordar setearle los children
+// NO va a haber elementos compartidos POR FUERA de las app o vistas ppales. 
+
+//PERO
+
+// BrowserRouter --> Lo uso tengo SIEMPRE UN MISMO OVERLAY, compartido por varias vistas o apps.
+// Recordar que cada Route tiene element={}
+
+//ENTONCES
+
+// Mi App va a tener Paginas que no comparten funcionalidades? RouterProvider
+// Mi App va a compartir un mismo menu? -> BroserRouter
+
 function App() {
   const menuBackdrop = useRef(null);
   // As useRef doesn't triggers element's re-render, we should force the re-render
