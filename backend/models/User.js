@@ -20,12 +20,14 @@ const UserSchema = new mongoose.Schema({
         type: String,
     },
     suscribers:{
+        // Los suscriptores de este usuario van a subir ese numero
         type: Number,
         default: 0
     },
-    subscriberUsers:{
+    subscribedUsers:{
         // Here will go all the channels a user suscribes to.
         // Default value is empty
+        // Van los IDs de los canales a los que este usuario se suscribio
         type: [String]
     },
 }, {

@@ -1,6 +1,10 @@
 const commentController = {
-    index : (req, res) =>{
-        res.json('Comment controller')
-    }
+    index : async (req, res, next) =>{
+        try {
+        
+        } catch (error) {
+            next(error)
+        }
+    },
 }
 export default commentController;

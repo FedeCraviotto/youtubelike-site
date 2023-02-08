@@ -2,7 +2,14 @@ import { createError } from "../customErrors.js";
 import User from "../models/User.js";
 
 const userController = {
-  get: async (req, res, next) => {},
+  get: async (req, res, next) => {
+    try {
+        const user = await User.findById(req.params.id)
+        res.status(200).json(user);
+    } catch (error) {
+        next(error)
+    }
+  },
   update: async (req, res, next) => {
     if (req.params.id === req.user.id) {
       try {
@@ -12,7 +19,9 @@ const userController = {
           { new: true }
         );
         res.status(200).json(updatedUser);
-      } catch (error) {}
+      } catch (error) {
+        next(error)
+      }
     } else {
       return next(createError(403, "You can update only your account"));
     }
@@ -30,10 +39,58 @@ const userController = {
     }
   },
   
-  suscribe: async (req, res, next) => {},
-  unsuscribe: async (req, res, next) => {},
-  like: async (req, res, next) => {},
-  dislike: async (req, res, next) => {},
+  suscribe: async (req, res, next) => {
+    try {
+        // El usuario logeado pushea al canal. Su id esta en el user via JWT
+        await User.findByIdAndUpdate(req.user.id, {
+            $push: {suscribedUsers: req.params.id}
+        })
+        // Por param nos llega el canal AL QUE se suscribio el usuario.
+        // Ese canal suma 1 suscriber
+        await User.findByIdAndUpdate(req.params.id, {
+            $inc:{suscribers: 1},
+        })
+        res.status(200).json('Sucessfully suscribed ')
+    } catch (error) {
+        next(error)
+    }
+  },
+  push: async (req, res, next) => {
+        // El usuario logeado pushea al canal. Su id esta en el user via JWT
+        const putamadre = await User.findByIdAndUpdate(req.user.id, 
+          {$addToSet: {suscribedUsers: req.params.id}})
+        res.status(200).json(putamadre)
+
+  },
+  unsuscribe: async (req, res, next) => {
+    try {
+        await User.findByIdAndUpdate(req.user.id, {
+            $pull: {suscribedUsers: req.params.id},
+            
+        })
+
+        await User.findByIdAndUpdate(req.params.id, {
+            $inc:{suscribers: -1},
+        })
+        res.status(200).json('Sucessfully suscribed ')
+    } catch (error) {
+        next(error)
+    }
+  },
+  like: async (req, res, next) => {
+    try {
+        
+    } catch (error) {
+        next(error)
+    }
+  },
+  dislike: async (req, res, next) => {
+    try {
+        
+    } catch (error) {
+        next(error)
+    }
+  },
 };
 
 export default userController;

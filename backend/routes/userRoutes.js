@@ -18,5 +18,6 @@ router.put('/like/:id', verifyToken, userController.dislike);
 // Goes last among all put endpoints because of the /:param
 // UPDATE USER
 router.put('/:id', verifyToken, userController.update);
+router.put('/push/:id', verifyToken, userController.push);
 
 export default router;
