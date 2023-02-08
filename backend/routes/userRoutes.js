@@ -8,8 +8,8 @@ router.get('/find/:id', userController.get);
 router.delete('/:id', verifyToken, userController.delete);
 
 // The param is the ID of the user(channel) TO suscribe 
-router.put('/sub/:id', verifyToken, userController.suscribe);
-router.put('/sub/:id', verifyToken, userController.unsuscribe);
+router.put('/sub/:id', verifyToken, userController.subscribe);
+router.put('/sub/:id', verifyToken, userController.unsubscribe);
 
 // The param is the ID of the VIDEO TO like
 router.put('/like/:id', verifyToken, userController.like);
@@ -18,6 +18,5 @@ router.put('/like/:id', verifyToken, userController.dislike);
 // Goes last among all put endpoints because of the /:param
 // UPDATE USER
 router.put('/:id', verifyToken, userController.update);
-router.put('/push/:id', verifyToken, userController.push);
 
 export default router;

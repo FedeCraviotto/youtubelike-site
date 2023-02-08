@@ -39,40 +39,33 @@ const userController = {
     }
   },
   
-  suscribe: async (req, res, next) => {
+  subscribe: async (req, res, next) => {
     try {
         // El usuario logeado pushea al canal. Su id esta en el user via JWT
         await User.findByIdAndUpdate(req.user.id, {
-            $push: {suscribedUsers: req.params.id}
+            $push: {subscribedUsers: req.params.id}
         })
         // Por param nos llega el canal AL QUE se suscribio el usuario.
-        // Ese canal suma 1 suscriber
+        // Ese canal suma 1 subscriber
         await User.findByIdAndUpdate(req.params.id, {
-            $inc:{suscribers: 1},
+            $inc:{subscribers: 1},
         })
-        res.status(200).json('Sucessfully suscribed ')
+        res.status(200).json('Sucessfully subscribed ')
     } catch (error) {
         next(error)
     }
   },
-  push: async (req, res, next) => {
-        // El usuario logeado pushea al canal. Su id esta en el user via JWT
-        const putamadre = await User.findByIdAndUpdate(req.user.id, 
-          {$addToSet: {suscribedUsers: req.params.id}})
-        res.status(200).json(putamadre)
-
-  },
-  unsuscribe: async (req, res, next) => {
+  unsubscribe: async (req, res, next) => {
     try {
         await User.findByIdAndUpdate(req.user.id, {
-            $pull: {suscribedUsers: req.params.id},
+            $pull: {subscribedUsers: req.params.id},
             
         })
 
         await User.findByIdAndUpdate(req.params.id, {
-            $inc:{suscribers: -1},
+            $inc:{subscribers: -1},
         })
-        res.status(200).json('Sucessfully suscribed ')
+        res.status(200).json('Sucessfully subscribed ')
     } catch (error) {
         next(error)
     }

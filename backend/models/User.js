@@ -19,7 +19,7 @@ const UserSchema = new mongoose.Schema({
     image:{
         type: String,
     },
-    suscribers:{
+    subscribers:{
         // Los suscriptores de este usuario van a subir ese numero
         type: Number,
         default: 0

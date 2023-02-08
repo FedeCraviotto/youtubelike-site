@@ -76,7 +76,7 @@ const videoController = {
     try {
         // the Model.find() method returns sorted results.
         // With aggregate(), we can retrieve a sample of 40 random videos
-        const videos = await Video.aggregate([{$sample:{size: 40}}]);
+        const videos = await Video.aggregate([{$sample:{size: 30}}]);
         res.status(200).json(videos)
     } catch (error) {
       next(error);
@@ -93,19 +93,23 @@ const videoController = {
     }
   },
   sub: async (req, res, next) => {
-    // In the User model there's the field called suscribedUsers.
+    // In the User model there's the field called subscribedUsers.
     // We will use this Array full of user IDs to fetch all their videos
     try {
         const user = await User.findById(req.user.id);
-        const subscribedChannels = user.suscribedUsers;
+        const subscribedChannels = user.subscribedUsers;
         // Buscamos todos los canales
-        const list = Promise.all(
+        const list = await Promise.all(
             subscribedChannels.map((channelId) => {
                 return Video.find({userId: channelId});
             })
         );
-
-        res.status(200).json(list);
+        // Originalmente va a devolver un array(respuesta)
+        // de arrays(Usuarios o Canales, a los que me suscribi)
+        // con objetos dentro (Videos)
+        // Con .flat() hacemos un spread de los videos de cada Canal, al [] general
+        // Sort dependiendo cual fue el ultimo en crearse
+        res.status(200).json(list.flat().sort((a, b) => b.createdAt - a.createdAt));
 
     } catch (error) {
       next(error);
