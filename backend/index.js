@@ -7,6 +7,7 @@ import commentRoutes from './routes/commentRoutes.js';
 import authRoutes from './routes/authRoutes.js';
 import cookieParser from "cookie-parser";
 import cors from 'cors';
+
 dotenv.config();
 
 const app = express();
@@ -31,11 +32,12 @@ app.listen(3030, (req, res) => {
   console.log(`Server running on port ${process.env.PORT}`);
 });
 
+
+app.use(cookieParser());
+
 app.use(cors({
   origin: 'http://localhost:4000',
 }));
-
-app.use(cookieParser());
 app.use(express.json());
 app.use('/api/users', userRoutes);
 app.use('/api/videos',  videoRoutes);

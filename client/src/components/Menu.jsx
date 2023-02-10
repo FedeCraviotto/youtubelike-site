@@ -26,9 +26,6 @@ function Menu({ menuOpen, setMenuOpen, menuBackdrop }) {
       : (sideMenu.current.style.transform = "translateX(-100%)");
   }, [menuOpen]);
 
-  function handleRedirect() {
-    window.location.replace("/");
-  }
 
   function handleMenuClose() {
     setMenuOpen(false);
@@ -41,10 +38,12 @@ function Menu({ menuOpen, setMenuOpen, menuBackdrop }) {
       <div className="wrapper">
         <div className="burguer-wrapper">
           <MenuOutlinedIcon className="burguer" onClick={handleMenuClose} />
-          <div className="logo" onClick={handleRedirect}>
-            <img src={YoutubeLogo} alt="" />
-            YouTube
-          </div>
+          <Link to='/'>
+            <div className="logo">
+              <img src={YoutubeLogo} alt="" />
+              YouTube
+            </div>
+          </Link>
         </div>
         <Link className="item" to="/">
           <HomeIcon />

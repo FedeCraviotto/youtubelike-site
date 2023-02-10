@@ -32,9 +32,10 @@ const authController = {
             const token = jwt.sign({id: user._id}, process.env.JWT_SECRET_KEY);
 
             const {password, ...safeInfo} = user._doc;
-
+            
             res.cookie('accessToken', token, {
-                httpOnly : true
+                httpOnly : true,
+                secure:true
             }).status(200).json(safeInfo);
         } catch(error) {
             next(error);
