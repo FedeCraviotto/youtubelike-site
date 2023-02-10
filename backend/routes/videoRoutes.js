@@ -11,8 +11,10 @@ router.delete('/:id', verifyToken, videoController.delete);
 router.put('/:id', verifyToken, videoController.update);
 
 router.put('/view/:id', videoController.addView);
-router.get('/trend', videoController.trend);
-router.get('/random', videoController.random);
+router.get('/trend', videoController.getBytrend);
+router.get('/random', videoController.getRandoms);
+router.get('/tags', videoController.getByTags);
+router.get('/search', videoController.getBySearch);
 
 // In order to see only suscribed channel videos
 router.get('/sub', verifyToken, videoController.sub);
