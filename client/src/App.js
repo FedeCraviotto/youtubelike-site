@@ -63,10 +63,16 @@ function App() {
             />
             <div className="main-wrapper">
               <Routes>
-                <Route path="/" exact element={<Home />} />
+                <Route  path="/">
+                  <Route exact index element={<Home type={'random'}/>} />
+                  <Route path="/trends"  element={<Home type={'trend'}/>} />
+                  <Route path="/subscriptions" element={<Home type={'sub'}/>} />
+                </Route>
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
-                <Route path="/video/:id" element={<Reproducer />} />
+                <Route path="video">
+                  <Route path=":id" element={<Reproducer />} />
+                </Route>
               </Routes>
             </div>
           </div>

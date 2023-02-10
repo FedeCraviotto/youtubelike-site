@@ -24,7 +24,7 @@ function Navbar({ setMenuOpen, menuBackdrop }) {
 
   useEffect(() => {
     /* global google */
-    google.accounts.id.initialize({
+    google?.accounts.id.initialize({
       client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
       callback: handleCallbackResponse,
     });

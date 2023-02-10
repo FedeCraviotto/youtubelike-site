@@ -30,8 +30,6 @@ function Comments({ comments }) {
 
   useEffect(()=>{
     description === '' ? commentButton.current.disabled = false : commentButton.current.disabled = true;
-    console.log(description === '' ? commentButton.current.disabled = false : commentButton.current.disabled = true)
-
   },[description])
 
   return (

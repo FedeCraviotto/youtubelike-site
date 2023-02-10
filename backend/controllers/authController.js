@@ -21,7 +21,6 @@ const authController = {
         
     },
     signIn : async (req, res, next) => {
-        let hashedPass = bcrypt.hashSync(req?.body?.password, 10);
         try {
             const user = await User.findOne({
                 email: req?.body?.email
