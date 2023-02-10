@@ -69,21 +69,7 @@ const userController = {
     } catch (error) {
         next(error)
     }
-  },
-  like: async (req, res, next) => {
-    try {
-        
-    } catch (error) {
-        next(error)
-    }
-  },
-  dislike: async (req, res, next) => {
-    try {
-        
-    } catch (error) {
-        next(error)
-    }
-  },
+  }
 };
 
 export default userController;

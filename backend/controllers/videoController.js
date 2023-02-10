@@ -117,11 +117,11 @@ const videoController = {
     }
   },
   getByTags: async (req, res, next) => {
-    const tags = req.query.tags.split(',');
+    const tags = req.query.tags.split(",");
     try {
       // $in tambien acepta expresiones regulares
       // { name: { $in: [ /^acme/i, /^ack/ ] } }
-      const videos = await Video.find({tags:{$in:tags}}).limit(20);
+      const videos = await Video.find({ tags: { $in: tags } }).limit(20);
       res.status(200).json(videos);
     } catch (error) {
       next(error);
@@ -131,8 +131,64 @@ const videoController = {
     const query = req.query.q;
     try {
       // in $options we pass a specific pattern (browse docs), in this case we establish a case-insensitive match
-      const videos = await Video.find({title:{$regex: query, $options:'i'}}).limit(40);
+      const videos = await Video.find({
+        title: { $regex: query, $options: "i" },
+      }).limit(40);
       res.status(200).json(videos);
+    } catch (error) {
+      next(error);
+    }
+  },
+  // El tema es que, en el modelo Video likes y dislikes son arrays
+  // Asi que vamos a estar haciendo pull push de IDs de usuarios
+  like: async (req, res, next) => {
+    const userId = req.user.id;
+    const videoId = req.params.id;
+    try {
+      // addToSet se encarga de que no haya valores duplicados en []
+      // Y al mismo tiempo, si le das like teniendo dislike, pull.
+      await Video.findByIdAndUpdate(videoId, {
+        $addToSet : {likes: userId},
+        $pull : {dislikes: userId}
+      })
+      res.status(200).json('Like added. Dislike removed');
+    } catch (error) {
+      next(error);
+    }
+  },
+  removeLike : async (req, res, next) => {
+    const userId = req.user.id;
+    const videoId = req.params.id;
+    try {
+      await Video.findByIdAndUpdate(videoId, {
+        $pull : {likes: userId}
+      })
+      res.status(200).json('Like removed');
+    } catch (error) {
+      next(error);
+    }
+  },
+  removeDislike : async (req, res, next) => {
+    const userId = req.user.id;
+    const videoId = req.params.id;
+    try {
+      await Video.findByIdAndUpdate(videoId, {
+        $pull : {dislikes: userId}
+      })
+      res.status(200).json('Dislike removed');
+    } catch (error) {
+      next(error);
+    }
+  },
+  dislike: async (req, res, next) => {
+    const userId = req.user.id;
+    const videoId = req.params.id;
+    try {
+      await Video.findByIdAndUpdate(videoId, {
+        $addToSet : {dislikes: userId},
+        $pull : {likes: userId}
+      })
+      res.status(200).json('Dislike added. Like removed');
     } catch (error) {
       next(error);
     }
