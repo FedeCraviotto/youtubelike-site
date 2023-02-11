@@ -12,15 +12,22 @@ import { DarkModeContext } from "../context/darkModeContext.js";
 import { useContext, useState, useEffect, useRef } from "react";
 import jwt_decode from "jwt-decode";
 import { Link } from "react-router-dom";
+import {useDispatch, useSelector} from 'react-redux';
+import { loginFailure, loginStart, loginSuccess, logout } from "../redux/userSlice";
+import OutsideAlerter from "./OutsideAlerter";
+
 
 function Navbar({ setMenuOpen, menuBackdrop }) {
   // Object.keys(myObject).length !== 0
-  const [userObject, setUserObject] = useState({});
-  const [userLogged, setUserLogged] = useState(false);
-  const [currentUser] = useState({});
+
+  const {currentUser} = useSelector((state)=>{
+    return state.user
+  })
   const [configMenuOpen, setConfigMenuOpen] = useState(false);
 
   const configMenuref = useRef();
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     /* global google */
@@ -31,26 +38,24 @@ function Navbar({ setMenuOpen, menuBackdrop }) {
   }, []);
 
   useEffect(() => {
-    !userLogged &&
+    !currentUser &&
       google.accounts.id.renderButton(document.getElementById("signInDiv"), {
         theme: "outline",
         size: "large",
       });
-  }, [userLogged]);
+  }, [currentUser]);
+
 
   useEffect(() => {
     configMenuOpen
-      ? (configMenuref.current.style.display = "flex")
-      : (configMenuref.current.style.display = "none");
+    ? (configMenuref.current.style.display = "flex")
+    : (configMenuref.current.style.display = "none");
   }, [configMenuOpen]);
 
   function handleCallbackResponse(response) {
-    console.log(response.credential);
     let decodedUserInfo = jwt_decode(response.credential);
     if (typeof decodedUserInfo === "object") {
-      setUserObject(decodedUserInfo);
-      setUserLogged(true);
-      console.log(decodedUserInfo);
+      dispatch(loginSuccess(decodedUserInfo))
     }
   }
 
@@ -83,17 +88,18 @@ function Navbar({ setMenuOpen, menuBackdrop }) {
         </div>
 
         <div className="actions">
+          <OutsideAlerter setConfigMenuOpen configMenuOpen>
           <ul className="config-menu" ref={configMenuref}>
             <li className="item" onClick={toggleMode}>
               <SettingsBrightnessOutlinedIcon />
               {darkMode ? "Modo Claro" : "Modo Oscuro"}
             </li>
-            {userLogged && (
+            {currentUser && (
               <li
                 className="item"
                 onClick={() => {
-                  setUserLogged(false);
-                  setUserObject({});
+                  dispatch(logout())
+                  setConfigMenuOpen(!configMenuOpen)
                 }}
               >
                 <SettingsBrightnessOutlinedIcon />
@@ -101,7 +107,8 @@ function Navbar({ setMenuOpen, menuBackdrop }) {
               </li>
             )}
           </ul>
-          {!userLogged ? (
+          </OutsideAlerter >
+          {!currentUser ? (
             <div className="login-menu">
               <MoreVertOutlinedIcon
                 onClick={() => setConfigMenuOpen(!configMenuOpen)}
@@ -116,12 +123,12 @@ function Navbar({ setMenuOpen, menuBackdrop }) {
             </div>
           ) : (
             <>
-              <VideoCallOutlinedIcon />
+              <VideoCallOutlinedIcon onClick={()=> console.log(currentUser)}/>
               <NotificationsOutlinedIcon />
               <button className="logged-menu">
                 <img
-                  src={userObject?.picture || currentUser.avatar}
-                  alt={userObject?.name || currentUser.name}
+                  src={currentUser?.picture || currentUser?.image}
+                  alt={currentUser?.name || currentUser?.name}
                   onClick={() => setConfigMenuOpen(!configMenuOpen)}
                 />
               </button>

@@ -2,15 +2,21 @@ import React, { useState } from "react";
 import "./login.scss";
 import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
+import { useDispatch, useSelector } from "react-redux";
+import { loginFailure, loginStart, loginSuccess } from "../redux/userSlice";
 
 function Login() {
 
   const navigate = useNavigate();
-  const [err, setErr] = useState(null);
+  const {error : err } = useSelector((state) =>{
+    return state.user.error
+  })
+  
   const [inputs, setInputs] = useState({
     email: "",
     password: "",
   });
+  const dispatch = useDispatch()
 
   function handleChange(e) {
     setInputs((previousInputs) => ({
@@ -21,11 +27,13 @@ function Login() {
 
   async function handleClick(e) {
     e.preventDefault();
+    dispatch(loginStart());
     try {
-      await axios.post(process.env.REACT_APP_API + "/auth/signin",inputs);
+      const res = await axios.post(process.env.REACT_APP_API + "/auth/signin",inputs);
+      dispatch(loginSuccess(res.data))
       navigate('/');
     } catch (error) {
-        setErr(error.response.data.message);
+        dispatch(loginFailure(error.response.data.message))
     }
   };
 
