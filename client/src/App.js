@@ -10,6 +10,8 @@ import Home from "./pages/Home";
 import Reproducer from "./pages/Reproducer";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import axios from "axios";
+axios.defaults.withCredentials = true;
 
 // RouterProvider --> Si tengo vistas aparte de la aplicacion principal.
 // Por ejemplo el Login, Register, ademas de la App ppal, que comparte navbar y etc.

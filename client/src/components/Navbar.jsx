@@ -123,7 +123,7 @@ function Navbar({ setMenuOpen, menuBackdrop }) {
             </div>
           ) : (
             <>
-              <VideoCallOutlinedIcon onClick={()=> console.log(currentUser)}/>
+              <VideoCallOutlinedIcon />
               <NotificationsOutlinedIcon />
               <button className="logged-menu">
                 <img

@@ -33,11 +33,12 @@ app.listen(3030, (req, res) => {
 });
 
 
-app.use(cookieParser());
-
 app.use(cors({
   origin: 'http://localhost:4000',
+  credentials: true
 }));
+
+app.use(cookieParser());
 app.use(express.json());
 app.use('/api/users', userRoutes);
 app.use('/api/videos',  videoRoutes);
