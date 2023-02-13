@@ -19,7 +19,7 @@ export const userSlice = createSlice({
         },
         loginFailure: (state)=>{
             state.isLoading = false;
-            state.error = false;
+            state.error = true;
         },
         logout: (state)=>{
             state.currentUser= null;

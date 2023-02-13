@@ -5,12 +5,13 @@ import Menu from "./components/Menu";
 import Navbar from "./components/Navbar";
 import { DarkModeContext } from "./context/darkModeContext";
 import { useContext } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Home from "./pages/Home";
 import Reproducer from "./pages/Reproducer";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import axios from "axios";
+import { useSelector } from "react-redux";
 axios.defaults.withCredentials = true;
 
 // RouterProvider --> Si tengo vistas aparte de la aplicacion principal.
@@ -29,6 +30,8 @@ axios.defaults.withCredentials = true;
 // Mi App va a compartir un mismo menu? -> BroserRouter
 
 function App() {
+
+  const {currentUser} = useSelector((state)=> state.user);
   const menuBackdrop = useRef(null);
   // As useRef doesn't triggers element's re-render, we should force the re-render
   // If we don't force the re render, useRef initally will be 'undefined'
@@ -36,7 +39,7 @@ function App() {
 
   useEffect(() => {
     setRefAcquired(true);
-  }, []);
+  },[]);
 
   function handleMenuClose() {
     setMenuOpen(false);
@@ -47,6 +50,7 @@ function App() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const { darkMode } = useContext(DarkModeContext);
+
   return (
     <BrowserRouter>
       <div className={`theme-${darkMode ? "dark" : "light"}`}>
@@ -64,18 +68,18 @@ function App() {
               menuBackdrop={menuBackdrop}
             />
             <div className="main-wrapper">
-              <Routes>
-                <Route  path="/">
-                  <Route exact index element={<Home type={'random'}/>} />
-                  <Route path="/trends"  element={<Home type={'trend'}/>} />
-                  <Route path="/subscriptions" element={<Home type={'sub'}/>} />
-                </Route>
-                <Route path="/login" element={<Login />} />
-                <Route path="/register" element={<Register />} />
-                <Route path="video">
-                  <Route path=":id" element={<Reproducer />} />
-                </Route>
-              </Routes>
+                <Routes>
+                  <Route  path="/">
+                    <Route exact index element={<Home type={'random'}/>} />
+                    <Route path="/trends"  element={<Home type={'trend'}/>} />
+                    <Route path="/subscriptions" element={<Home type={'sub'}/>} />
+                  </Route>
+                  <Route path="video">
+                    <Route path=":id" element={<Reproducer />} />
+                  </Route>
+                  <Route path="/login" element={currentUser ? (<Navigate replace to={"/"} />) : (<Login />)} />
+                  <Route path="/register" element={currentUser ? (<Navigate replace to={"/"} />) :(<Register />)} />
+                </Routes>
             </div>
           </div>
         </div>

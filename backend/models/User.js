@@ -13,8 +13,10 @@ const UserSchema = new mongoose.Schema({
     },
     password:{
         type: String,
-        required: true,
-        unique: false,
+        // required: true,
+        // unique: false,
+
+        // not required because of GoogleAuth
     },
     image:{
         type: String,
@@ -30,6 +32,10 @@ const UserSchema = new mongoose.Schema({
         // Van los IDs de los canales a los que este usuario se suscribio
         type: [String]
     },
+    fromGoogle:{
+        type: Boolean,
+        default: false,
+    }
 }, {
     timestamps: true
 });

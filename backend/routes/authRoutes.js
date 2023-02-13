@@ -5,6 +5,6 @@ const router = express.Router();
 
 router.post('/signup', authController.signUp);
 router.post('/signin', authController.signIn);
-router.post('/google', authController.googleSignIn);
+router.post('/google', authController.googleAuth);
 
 export default router;

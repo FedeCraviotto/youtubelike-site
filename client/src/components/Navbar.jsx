@@ -10,59 +10,83 @@ import MoreVertOutlinedIcon from "@mui/icons-material/MoreVertOutlined";
 import SettingsBrightnessOutlinedIcon from "@mui/icons-material/SettingsBrightnessOutlined";
 import { DarkModeContext } from "../context/darkModeContext.js";
 import { useContext, useState, useEffect, useRef } from "react";
-import jwt_decode from "jwt-decode";
+// import jwt_decode from "jwt-decode";
 import { Link } from "react-router-dom";
-import {useDispatch, useSelector} from 'react-redux';
-import { loginFailure, loginStart, loginSuccess, logout } from "../redux/userSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { loginFailure, loginSuccess, logout, loginStart } from "../redux/userSlice";
 import OutsideAlerter from "./OutsideAlerter";
-
+import { auth, provider } from "../firebase.js";
+import { signInWithPopup } from "firebase/auth";
+import axios from "axios";
 
 function Navbar({ setMenuOpen, menuBackdrop }) {
   // Object.keys(myObject).length !== 0
 
-  const {currentUser} = useSelector((state)=>{
-    return state.user
-  })
+  const { currentUser } = useSelector((state) => {
+    return state.user;
+  });
   const [configMenuOpen, setConfigMenuOpen] = useState(false);
 
   const configMenuref = useRef();
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    /* global google */
-    google?.accounts.id.initialize({
-      client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
-      callback: handleCallbackResponse,
-    });
-  }, []);
+  // useEffect(() => {
+  //   /* global google */
+  //   google?.accounts.id.initialize({
+  //     client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
+  //     callback: handleCallbackResponse,
+  //   });
+  // }, []);
 
-  useEffect(() => {
-    !currentUser &&
-      google.accounts.id.renderButton(document.getElementById("signInDiv"), {
-        theme: "outline",
-        size: "large",
-      });
-  }, [currentUser]);
+  // useEffect(() => {
+  //   !currentUser &&
+  //     google.accounts.id.renderButton(document.getElementById("signInDiv"), {
+  //       theme: "outline",
+  //       size: "large",
+  //     });
+  // }, [currentUser]);
 
+  // function handleCallbackResponse(response) {
+  //   let decodedUserInfo = jwt_decode(response.credential);
+  //   if (typeof decodedUserInfo === "object") {
+  //     dispatch(loginSuccess(decodedUserInfo))
+  //   }
+  // }
 
   useEffect(() => {
     configMenuOpen
-    ? (configMenuref.current.style.display = "flex")
-    : (configMenuref.current.style.display = "none");
+      ? (configMenuref.current.style.display = "flex")
+      : (configMenuref.current.style.display = "none");
   }, [configMenuOpen]);
-
-  function handleCallbackResponse(response) {
-    let decodedUserInfo = jwt_decode(response.credential);
-    if (typeof decodedUserInfo === "object") {
-      dispatch(loginSuccess(decodedUserInfo))
-    }
-  }
 
   function handleMenuOpen() {
     setMenuOpen(true);
     menuBackdrop.current.style.opacity = "0.5";
     menuBackdrop.current.style.zIndex = "9";
+  }
+
+  function signInWithGoogle() {
+    signInWithPopup(auth, provider).then((result) => {
+      dispatch(loginStart());
+      axios
+        .post(`${process.env.REACT_APP_API}/auth/google`, {
+          name: result.user.displayName,
+          email: result.user.email,
+          image: result.user.photoURL,
+        })
+        .then((userFromDB) => {
+          dispatch(loginSuccess(userFromDB.data));
+        })
+        .catch((error)=> {
+          dispatch(loginFailure());
+          console.log(error);
+        })
+    })
+    .catch((error)=>{
+      dispatch(loginFailure());
+      console.log(error);
+    })
   }
 
   const { toggleMode, darkMode } = useContext(DarkModeContext);
@@ -89,25 +113,25 @@ function Navbar({ setMenuOpen, menuBackdrop }) {
 
         <div className="actions">
           <OutsideAlerter setConfigMenuOpen configMenuOpen>
-          <ul className="config-menu" ref={configMenuref}>
-            <li className="item" onClick={toggleMode}>
-              <SettingsBrightnessOutlinedIcon />
-              {darkMode ? "Modo Claro" : "Modo Oscuro"}
-            </li>
-            {currentUser && (
-              <li
-                className="item"
-                onClick={() => {
-                  dispatch(logout())
-                  setConfigMenuOpen(!configMenuOpen)
-                }}
-              >
+            <ul className="config-menu" ref={configMenuref}>
+              <li className="item" onClick={toggleMode}>
                 <SettingsBrightnessOutlinedIcon />
-                Logout
+                {darkMode ? "Modo Claro" : "Modo Oscuro"}
               </li>
-            )}
-          </ul>
-          </OutsideAlerter >
+              {currentUser && (
+                <li
+                  className="item"
+                  onClick={() => {
+                    dispatch(logout());
+                    setConfigMenuOpen(!configMenuOpen);
+                  }}
+                >
+                  <SettingsBrightnessOutlinedIcon />
+                  Logout
+                </li>
+              )}
+            </ul>
+          </OutsideAlerter>
           {!currentUser ? (
             <div className="login-menu">
               <MoreVertOutlinedIcon
@@ -119,6 +143,7 @@ function Navbar({ setMenuOpen, menuBackdrop }) {
                   Acceder
                 </Link>
               </button>
+              <button onClick={signInWithGoogle}>Sign In with google</button>
               <div id="signInDiv"></div>
             </div>
           ) : (
