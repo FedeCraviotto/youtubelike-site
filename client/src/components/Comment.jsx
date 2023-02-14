@@ -8,7 +8,7 @@ function Comment({comment}){
     return(
         <div className="comment" key={comment.id}>
             <Link to="/">
-              <img src={comment.avatar} alt="" />
+              <img src={comment.avatar} alt="" referrerPolicy="no-referrer"/>
             </Link>
             <div className="comment-info">
               <p>{comment.user} <span>{moment(comment.postedAt).fromNow()}</span></p>

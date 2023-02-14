@@ -44,7 +44,7 @@ function Comments({ comments }) {
       <div className="comments">
         <div className="postComment">
           <Link to="/">
-            <img src={dummy.avatar} alt={dummy.user} />
+            <img src={dummy.avatar} alt={dummy.user} referrerPolicy="no-referrer"/>
           </Link>
           <div className="comment-info">
             <input

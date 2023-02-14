@@ -9,8 +9,6 @@ moment.locale("es");
 
 function Card({ video, type }) {
   
-
-
   const [channel, setChannel] = useState([]);
   const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(true)
@@ -33,7 +31,7 @@ function Card({ video, type }) {
 
   return (
     <div className={`${type === "small" ? "card cardSm" : "card"}`}>
-      <Link to={`/video/${video.id}`}>
+      <Link to={`/video/${video._id}`}>
         <img src={video.imageURL} alt="" />
       </Link>
       <div className="details">
