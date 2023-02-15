@@ -129,7 +129,7 @@ function Reproducer() {
             playing={true}
             url={currentVideo?.videoURL}
             width="100%"
-            height="520px"
+            height="70vh"
             controls={true}
           />
           <h2 className="title">{currentVideo?.title}</h2>
@@ -139,9 +139,10 @@ function Reproducer() {
               <div className="channel">
                 <span>{channel.name}</span>
                 <span>
-                  {channel?.suscribers}{" "}
-                  {/* .toString()
-                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",") */}
+                  {channel?.suscribers > 0 ? (channel?.suscribers.toString()
+                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")) : ('0')
+                  }
+                    {" "}
                   suscriptores
                 </span>
               </div>
@@ -155,10 +156,9 @@ function Reproducer() {
               <div className="thumbs">
                 <button className="">
                   <ThumbUpOutlinedIcon />
-                  {currentVideo?.likes?.length}
-                  {/* .length
-                    .toString()
-                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",") */}
+                  {currentVideo?.likes.length > 0 ? (currentVideo?.likes.toString()
+                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")) : ('0')
+                  }
                 </button>
                 <button>
                   <ThumbDownOutlinedIcon />
