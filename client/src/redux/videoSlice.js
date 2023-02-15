@@ -31,6 +31,14 @@ export const videoSlice = createSlice({
           ),
           1
         );
+      } else {
+        state.currentVideo.likes.splice(
+          state.currentVideo.likes.findIndex(
+            // A cada indice comparalo con el Id que te pase por payload. Al indice del que coincida -findIndex- sacamelo del [] del estado -splice-
+            (userId) => userId === action.payload
+          ),
+          1
+        );
       }
     },
     dislike: (state, action) => {
@@ -38,6 +46,13 @@ export const videoSlice = createSlice({
         state.currentVideo.dislikes.push(action.payload);
         state.currentVideo.likes.splice(
           state.currentVideo.likes.findIndex(
+            (userId) => userId === action.payload
+          ),
+          1
+        );
+      } else {
+        state.currentVideo.dislikes.splice(
+          state.currentVideo.dislikes.findIndex(
             (userId) => userId === action.payload
           ),
           1

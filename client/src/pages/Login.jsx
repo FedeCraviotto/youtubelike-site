@@ -8,10 +8,10 @@ import { loginFailure, loginStart, loginSuccess } from "../redux/userSlice";
 function Login() {
 
   const navigate = useNavigate();
-  const {error : err } = useSelector((state) =>{
-    return state.user.error
-  })
-  
+  // const {error : err } = useSelector((state) =>{
+  //   return state.user
+  // })
+  const [loginError, setLoginError] = useState(null)
   const [inputs, setInputs] = useState({
     email: "",
     password: "",
@@ -33,7 +33,7 @@ function Login() {
       dispatch(loginSuccess(res.data))
       navigate('/');
     } catch (error) {
-        dispatch(loginFailure(error.response.data.message))
+        setLoginError(error.response.data.message)
     }
   };
 
@@ -43,7 +43,7 @@ function Login() {
         <h1>Login</h1>
         <input type="text" name='email' placeholder="email" onChange={handleChange}/>
         <input type="password" name='password' placeholder="password" onChange={handleChange}/>
-        {err && err}
+        <span className="error-message">{loginError && loginError}</span>
         
         <div className="buttons">
           <button onClick={handleClick}>

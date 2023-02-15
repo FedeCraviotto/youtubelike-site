@@ -10,7 +10,6 @@ import MoreVertOutlinedIcon from "@mui/icons-material/MoreVertOutlined";
 import SettingsBrightnessOutlinedIcon from "@mui/icons-material/SettingsBrightnessOutlined";
 import { DarkModeContext } from "../context/darkModeContext.js";
 import { useContext, useState, useEffect, useRef } from "react";
-// import jwt_decode from "jwt-decode";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loginFailure, loginSuccess, logout, loginStart } from "../redux/userSlice";
@@ -20,7 +19,6 @@ import { signInWithPopup } from "firebase/auth";
 import axios from "axios";
 
 function Navbar({ setMenuOpen, menuBackdrop }) {
-  // Object.keys(myObject).length !== 0
 
   const { currentUser } = useSelector((state) => {
     return state.user;
@@ -31,28 +29,6 @@ function Navbar({ setMenuOpen, menuBackdrop }) {
 
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   /* global google */
-  //   google?.accounts.id.initialize({
-  //     client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
-  //     callback: handleCallbackResponse,
-  //   });
-  // }, []);
-
-  // useEffect(() => {
-  //   !currentUser &&
-  //     google.accounts.id.renderButton(document.getElementById("signInDiv"), {
-  //       theme: "outline",
-  //       size: "large",
-  //     });
-  // }, [currentUser]);
-
-  // function handleCallbackResponse(response) {
-  //   let decodedUserInfo = jwt_decode(response.credential);
-  //   if (typeof decodedUserInfo === "object") {
-  //     dispatch(loginSuccess(decodedUserInfo))
-  //   }
-  // }
 
   useEffect(() => {
     configMenuOpen
@@ -97,7 +73,7 @@ function Navbar({ setMenuOpen, menuBackdrop }) {
         <MenuOutlinedIcon className="burguer" onClick={handleMenuOpen} />
         <Link to={"/"}>
           <div className="logo">
-            <img src={YoutubeLogo} alt="youtube logo" />
+            <img src={YoutubeLogo} alt="youtube logo" referrerPolicy="no-referrer"/>
             YouTube
           </div>
         </Link>
@@ -144,7 +120,6 @@ function Navbar({ setMenuOpen, menuBackdrop }) {
                 </Link>
               </button>
               <button onClick={signInWithGoogle}>Sign In with google</button>
-              <div id="signInDiv"></div>
             </div>
           ) : (
             <>
@@ -155,6 +130,7 @@ function Navbar({ setMenuOpen, menuBackdrop }) {
                   src={currentUser?.picture || currentUser?.image}
                   alt={currentUser?.name || currentUser?.name}
                   onClick={() => setConfigMenuOpen(!configMenuOpen)}
+                  referrerPolicy="no-referrer"
                 />
               </button>
             </>

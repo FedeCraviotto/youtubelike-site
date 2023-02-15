@@ -8,7 +8,7 @@ function Register() {
   
 
   const navigate = useNavigate();
-  const [err, setErr] = useState(null);
+  const [signUpError, setSignUpError] = useState(null)
   const [inputs, setInputs] = useState({
     name: "",
     email: "",
@@ -26,12 +26,12 @@ function Register() {
 
   async function handleClick(e) {
     e.preventDefault();
-    if(inputs.password!==inputs.repeatPassword) return setErr('Passwords don\'t match');
+    if(inputs.password!==inputs.repeatPassword) return setSignUpError('Passwords don\'t match');
     try {
       await axios.post(process.env.REACT_APP_API + "/auth/signup",inputs);
       navigate('/login');
     } catch (error) {
-        setErr(error.response.data.message);
+      setSignUpError(error.response.data.message);
     }
   };
   return (
@@ -42,7 +42,7 @@ function Register() {
         <input type="text" name='email' placeholder="email" onChange={handleChange}/>
         <input type="password" name='password' placeholder="password" onChange={handleChange}/>
         <input type="password" name='repeatPassword' placeholder="repeat pass" onChange={handleChange}/>
-        {err && err}
+        <span className="error-message">{signUpError && signUpError}</span>
         <div className="buttons">
           <button onClick={handleClick}>
             Registrarme

@@ -1,7 +1,7 @@
 @import "./common.scss";
 .app {
   @include themify($themes) {
-    background-color: themed('bg');
+    background-color: themed("bg");
     position: relative;
     display: flex;
     .main {
@@ -9,7 +9,7 @@
       background-color: themed("bgSoft");
       color: themed("textColor");
       position: relative;
-      .backdrop{
+      .backdrop {
         position: absolute;
         background-color: #000;
         opacity: 0;
@@ -19,10 +19,52 @@
         bottom: 0;
         z-index: -1;
       }
-      .main-wrapper{
+      .main-wrapper {
         padding: 10px 96px;
-        background-color: themed('bg');
+        background-color: themed("bg");
       }
+    }
+    span.error-message {
+      color: red;
+      font-size: 14px;
+      width: 150px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      text-align: center;
     }
   }
 }
+//   Cortar palabras
+//   word-break: break-word;    version actual: overflow-wrap: normal / break-word
+//   ms-word-break: break-word;
+// }
+
+//  Agregar el guion al final del break
+//   -webkit-hyphens: auto;
+//   -moz-hyphens: auto;
+//   -ms-hyphens: auto;
+//   hyphens: auto;
+
+//    Setear que simbolo queres que aparezca en el overflow
+// text-overflow: ellipsis;
+// overflow: hidden; 
+// width: 160px; 
+
+
+/*
+Como manejamos los espacios en blanco
+white-space: nowrap;
+normal --> wrappea todo
+no-wrap --> todo en 1 sola linea
+pre --> 1 linea por cada salto de linea o <br> detectado. Cada linea hace overflow naturalmente. Genera tabulaciones
+pre-wrap --> 1 linea por cada salto de linea o <br> detectado. PERO ninguna linea hace overflow. Wrappea de ser necesario. Genera tabulaciones
+pre-line --> 1 linea por cada salto de linea o <br> detectado. PERO ninguna linea hace overflow. Wrappea de ser necesario. NO genera tabulaciones
+break-spaces --> paja, no se. Se parece a pre-wrap
+ Global values
+white-space: inherit;
+white-space: initial;
+white-space: revert;
+white-space: revert-layer;
+white-space: unset;
+ */
