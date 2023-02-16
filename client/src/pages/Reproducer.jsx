@@ -39,7 +39,7 @@ function Reproducer() {
   );
   const dispatch = useDispatch();
   const [openExtendedInfo, setOpenExtendedInfo] = useState(false);
-  // const [channel, setChannel] = useState({});
+  
   const [recommendedVideos, setRecommendedVideos] = useState([]);
   const path = useLocation().pathname.split("/")[2];
 
@@ -53,7 +53,7 @@ function Reproducer() {
         const channelResponse = await axios.get(
           `${process.env.REACT_APP_API}/users/find/${videoResponse.data.userId}`
         );
-        // setChannel(channelResponse.data);
+  
         dispatch(fetchSuccess(videoResponse.data));
         dispatch(fetchChannel(channelResponse.data));
       } catch (err) {
@@ -75,65 +75,6 @@ function Reproducer() {
   }, [path, dispatch]);
 
   //Olive Waygu tiene comments
-
-  const dummyVideo = {
-    id: 12,
-    image:
-      "https://i.ytimg.com/vi/WYp9Eo9T3BA/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLA70fLxAnFjKz506cZ_Naivou-HYA",
-    length: "2:00:00",
-    title: "Land of Rising Sun",
-    channel: "Beyond Skys",
-    views: 613382,
-    suscribers: 165933,
-    uploadDate: "2023/01/25 08:15:13",
-    avatar:
-      "https://yt3.ggpht.com/ytc/AL5GRJW6fobZK0VK-aBTyGiVjTB6It9BtIYWMvncEhFWEA=s68-c-k-c0x00ffffff-no-rj",
-    // link: "https://www.youtube.com/embed/xHlqSABb7pI",
-    link: "https://www.youtube.com/watch?v=xHlqSABb7pI&t=1s&ab_channel=BeyondSkys",
-    likes: 65985251,
-    description:
-      "From a collection of house music that includes the best mixins performed and delivered by australian DJs, to the world. Enjoy!",
-    extendedDescription:
-      "lorem lorem ipsun cualquierum lorem lorem ipsun cualquierum lorem lorem ipsun cualquierum lorem lorem ipsun cualquierum lorem lorem \r ipsun cualquierum lorem lorem ipsun cualquierum lorem lorem ipsun cualquierum lorem lorem ipsun cualquierum lorem lorem ipsun cualquierum lorem lorem ipsun cualquierum lorem lorem ipsun cualquierum lorem lorem ipsun cualquierum lorem lorem \ripsun cualquierum lorem lorem ipsun cualquierum lorem lorem ipsun cualquierum lorem lorem ipsun cualquierum lorem lorem ipsun cualquierum lorem lorem ipsun cualquierum lorem lorem ipsun cualquierum lorem lorem ipsun cualquierum lorem lorem ipsun cualquierum lorem lorem ipsun cualquierum lorem lorem \ripsun cualquierum lorem lorem ipsun cualquierum lorem lorem ipsun cualquierum lorem lorem ipsun cualquierum ",
-    comments: [
-      {
-        id: 1,
-        likes: 240,
-        user: "Pipe",
-        comment: "Wow, que majo",
-        postedAt: "2023/01/23 08:15:13",
-        avatar:
-          "https://yt3.ggpht.com/ytc/AL5GRJV-jG6YXeMkOQlR8cN-IMU22krT-7S-Uh30wA=s48-c-k-c0x00ffffff-no-rj",
-      },
-      {
-        id: 2,
-        likes: 140,
-        user: "Tanya",
-        comment: "El mejor compilado, lejos",
-        postedAt: "2023/01/20 04:15:13",
-        avatar:
-          "https://yt3.ggpht.com/ytc/AL5GRJUTX9fAg8dp5eaiSItCKuGi7EZmPGruAtXxXBEiBu4=s48-c-k-c0x00ffffff-no-rj",
-      },
-      {
-        id: 3,
-        likes: 37,
-        user: "Lucas",
-        comment: "Nice beat",
-        postedAt: "2023/01/17 02:15:13",
-        avatar:
-          "https://yt3.ggpht.com/ytc/AL5GRJWdoJgnI4P-3T_16xaIaZ6Ocjqujr4qO2KztGGK6A=s48-c-k-c0x00ffffff-no-rj",
-      },
-      {
-        id: 4,
-        likes: 0,
-        user: "Samantha",
-        comment: "HOlly Molly",
-        postedAt: "2023/01/15 17:15:13",
-        avatar:
-          "https://yt3.ggpht.com/ytc/AL5GRJVf54EMnc8Bz75iMFyDOyS2TQPPMKAVeknbExWOgA=s48-c-k-c0x00ffffff-no-rj",
-      },
-    ],
-  };
 
   const handleLike = async () => {
     if (currentUser) {
@@ -163,17 +104,7 @@ function Reproducer() {
       );
       dispatch(subscribe(channel._id));
       dispatch(addSub());
-      // console.log('before sub')
-      // console.log(channel)
-      // const newSubArray = [...channel.subscribedUsers, channel._id]
-      // setChannel((prev)=>{
-      //   return {
-      //     ...prev,
-      //     subscribedUsers : newSubArray
-      //   }
-      // })
-      // console.log('aftersub')
-      // console.log(channel)
+
     } else {
       navigate("/login");
     }
@@ -185,17 +116,7 @@ function Reproducer() {
       );
       dispatch(unsubscribe(channel._id));
       dispatch(restSub());
-      // console.log('before unsub')
-      // console.log(channel)
-      // const newSubArray = channel.subscribedUsers.filter((indexValue)=> indexValue !== channel._id)
-      // setChannel((prev)=>{
-      //   return {
-      //     ...prev,
-      //     subscribedUsers : newSubArray
-      //   }
-      // })
-      // console.log('after unsub')
-      // console.log(channel)
+
     } else {
       navigate("/login");
     }
@@ -254,11 +175,7 @@ function Reproducer() {
                   {currentVideo?.likes?.length
                     .toString()
                     .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-                  {/* {currentVideo?.likes.length > 0
-                    ? currentVideo?.likes?.length
-                        .toString()
-                        .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-                    : "0"} */}
+
                 </button>
                 <button onClick={handleDislike}>
                   {currentUser &&
@@ -306,7 +223,7 @@ function Reproducer() {
             )}
           </div>
           {}
-          <Comments comments={dummyVideo.comments} />
+          <Comments videoId={currentVideo._id} />
         </div>
       </div>
       {recommendedVideos.length > 0 && (

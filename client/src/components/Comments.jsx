@@ -7,17 +7,21 @@ import { useState } from "react";
 import Comment from "./Comment";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
+import axios from 'axios';
 
-function Comments({ comments }) {
+function Comments({ videoId }) {
   const { currentUser } = useSelector((state) => state.user);
   const actionContainer = useRef()
   const commentButton = useRef();
 
-  const [description, setDescription] = useState("");
+  const [description, setDescription] = useState('');
+  const [comments, setComments] = useState([]);
+  const [error, setError] = useState('');
 
   function handleShowActions(){
     actionContainer.current.style.display="flex";
   }
+
 
   useEffect(()=>{
     if (currentUser){
@@ -25,10 +29,27 @@ function Comments({ comments }) {
     }
   },[description, currentUser])
 
+  useEffect(()=>{
+    const fetchComments = async () =>{
+      try {
+        
+      } catch (err) {
+        setError(err.response.data.message)
+      }
+      const fetchedComments = await axios.get(
+        `${process.env.REACT_APP_API}/comments/${videoId}`
+      );
+      setComments(fetchedComments.data);
+    };
+    fetchComments();
+  }, [videoId])
+
+  if(error) return (<span className="error-message">{error}</span>)
+
   return (
     <div className="container">
       <div className="header">
-        <span>{comments.length} comentarios</span>
+        <span>{comments?.length} comentarios</span>
         <span>
           {" "}
           <ReorderOutlinedIcon /> Ordenar por
@@ -63,7 +84,7 @@ function Comments({ comments }) {
         
 
         {comments?.map((comment) => (
-          <Comment comment={comment} key={comment.id} />
+          <Comment comment={comment} key={comment._id} />
         ))}
 
       </div>
