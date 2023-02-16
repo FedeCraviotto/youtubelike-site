@@ -3,7 +3,7 @@ import "./reproducer.scss";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
 import ThumbDownOutlinedIcon from "@mui/icons-material/ThumbDownOutlined";
-import ThumbDownIcon from '@mui/icons-material/ThumbDown';
+import ThumbDownIcon from "@mui/icons-material/ThumbDown";
 import ReplyOutlinedIcon from "@mui/icons-material/ReplyOutlined";
 import GetAppOutlinedIcon from "@mui/icons-material/GetAppOutlined";
 import MoreHorizOutlinedIcon from "@mui/icons-material/MoreHorizOutlined";
@@ -16,20 +16,30 @@ import Comments from "../components/Comments";
 import ReactPlayer from "react-player";
 import Card from "../components/Card";
 import { useDispatch, useSelector } from "react-redux";
-import {useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { fetchFailure, fetchStart, fetchSuccess, like, dislike } from "../redux/videoSlice.js";
+import {
+  fetchFailure,
+  fetchStart,
+  fetchSuccess,
+  like,
+  dislike,
+} from "../redux/videoSlice.js";
+import { subscribe, unsubscribe } from '../redux/userSlice';
+import { addSub, restSub, fetchChannel } from '../redux/channelSlice';
 
 function Reproducer() {
-
   const navigate = useNavigate();
   const { currentUser } = useSelector((state) => state.user);
   const { currentVideo, isLoading, error } = useSelector(
     (state) => state.video
   );
+  const { currentChannel : channel } = useSelector(
+    (state) => state.channel
+  );
   const dispatch = useDispatch();
   const [openExtendedInfo, setOpenExtendedInfo] = useState(false);
-  const [channel, setChannel] = useState({});
+  // const [channel, setChannel] = useState({});
   const [recommendedVideos, setRecommendedVideos] = useState([]);
   const path = useLocation().pathname.split("/")[2];
 
@@ -43,8 +53,9 @@ function Reproducer() {
         const channelResponse = await axios.get(
           `${process.env.REACT_APP_API}/users/find/${videoResponse.data.userId}`
         );
-        setChannel(channelResponse.data);
+        // setChannel(channelResponse.data);
         dispatch(fetchSuccess(videoResponse.data));
+        dispatch(fetchChannel(channelResponse.data));
       } catch (err) {
         dispatch(fetchFailure());
       }
@@ -62,6 +73,8 @@ function Reproducer() {
     fetchRecommended();
     fetchData();
   }, [path, dispatch]);
+
+  //Olive Waygu tiene comments
 
   const dummyVideo = {
     id: 12,
@@ -123,21 +136,70 @@ function Reproducer() {
   };
 
   const handleLike = async () => {
-    if(currentUser){
-      await axios.put(`${process.env.REACT_APP_API}/videos/like/${currentVideo._id}`);
+    if (currentUser) {
+      await axios.put(
+        `${process.env.REACT_APP_API}/videos/like/${currentVideo._id}`
+      );
       dispatch(like(currentUser._id));
     } else {
-      navigate('/login');
+      navigate("/login");
     }
-  }
+  };
   const handleDislike = async () => {
-    if(currentUser){
-      await axios.put(`${process.env.REACT_APP_API}/videos/dislike/${currentVideo._id}`);
+    if (currentUser) {
+      await axios.put(
+        `${process.env.REACT_APP_API}/videos/dislike/${currentVideo._id}`
+      );
       dispatch(dislike(currentUser._id));
-    } else{
-      navigate('/login');
+    } else {
+      navigate("/login");
     }
-  }
+  };
+
+  const handleSubscribe = async () => {
+    if (currentUser) {
+      await axios.put(
+        `${process.env.REACT_APP_API}/users/sub/${channel._id}`
+      );
+      dispatch(subscribe(channel._id));
+      dispatch(addSub());
+      // console.log('before sub')
+      // console.log(channel)
+      // const newSubArray = [...channel.subscribedUsers, channel._id]
+      // setChannel((prev)=>{
+      //   return {
+      //     ...prev,
+      //     subscribedUsers : newSubArray
+      //   }
+      // })
+      // console.log('aftersub')
+      // console.log(channel)
+    } else {
+      navigate("/login");
+    }
+  };
+  const handleUnsubscribe = async () => {
+    if (currentUser) {
+      await axios.put(
+        `${process.env.REACT_APP_API}/users/unsub/${channel._id}`
+      );
+      dispatch(unsubscribe(channel._id));
+      dispatch(restSub());
+      // console.log('before unsub')
+      // console.log(channel)
+      // const newSubArray = channel.subscribedUsers.filter((indexValue)=> indexValue !== channel._id)
+      // setChannel((prev)=>{
+      //   return {
+      //     ...prev,
+      //     subscribedUsers : newSubArray
+      //   }
+      // })
+      // console.log('after unsub')
+      // console.log(channel)
+    } else {
+      navigate("/login");
+    }
+  };
 
   if (isLoading) return "Loading";
   if (error) return "Something went wrong";
@@ -156,35 +218,42 @@ function Reproducer() {
           <h2 className="title">{currentVideo?.title}</h2>
           <div className="details">
             <div className="info">
-              <img src={channel.image} alt={channel.name} className="avatar" />
+              <img src={channel?.image} alt={channel?.name} className="avatar" />
               <div className="channel">
-                <span>{channel.name}</span>
+                <span>{channel?.name}</span>
                 <span>
-                  {channel?.suscribers > 0
-                    ? channel?.suscribers
+                  {channel?.subscribers > 0
+                    ? channel?.subscribers
                         .toString()
                         .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
                     : "0"}{" "}
                   suscriptores
                 </span>
               </div>
-              <button>
-                <NotificationsNoneOutlinedIcon />
-                Suscrito
-                <KeyboardArrowDownOutlinedIcon />
-              </button>
+              <button>Unirse</button>
+              {currentUser &&
+              currentUser?.subscribedUsers?.includes(channel?._id) ? (
+                <button onClick={handleUnsubscribe}>
+                  <NotificationsNoneOutlinedIcon />
+                  Suscrito
+                  <KeyboardArrowDownOutlinedIcon />
+                </button>
+              ) : (
+                <button onClick={handleSubscribe}>Suscribirse</button>
+              )}
             </div>
             <div className="buttons">
               <div className="thumbs">
                 <button onClick={handleLike}>
-                {currentUser && currentVideo?.likes.includes(currentUser._id) ? (
+                  {currentUser &&
+                  currentVideo?.likes.includes(currentUser._id) ? (
                     <ThumbUpIcon />
                   ) : (
                     <ThumbUpOutlinedIcon />
                   )}
                   {currentVideo?.likes?.length
-                        .toString()
-                        .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                    .toString()
+                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                   {/* {currentVideo?.likes.length > 0
                     ? currentVideo?.likes?.length
                         .toString()
@@ -192,7 +261,8 @@ function Reproducer() {
                     : "0"} */}
                 </button>
                 <button onClick={handleDislike}>
-                {currentUser && currentVideo?.dislikes.includes(currentUser._id) ? (
+                  {currentUser &&
+                  currentVideo?.dislikes.includes(currentUser._id) ? (
                     <ThumbDownIcon />
                   ) : (
                     <ThumbDownOutlinedIcon />
@@ -235,6 +305,7 @@ function Reproducer() {
               <p className="showInfo">Mostrar mas...</p>
             )}
           </div>
+          {}
           <Comments comments={dummyVideo.comments} />
         </div>
       </div>

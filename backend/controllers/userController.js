@@ -65,7 +65,7 @@ const userController = {
         await User.findByIdAndUpdate(req.params.id, {
             $inc:{subscribers: -1},
         })
-        res.status(200).json('Sucessfully subscribed ')
+        res.status(200).json('Sucessfully unsubscribed ')
     } catch (error) {
         next(error)
     }
