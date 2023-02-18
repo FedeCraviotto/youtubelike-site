@@ -223,7 +223,7 @@ function Reproducer() {
             )}
           </div>
           {}
-          <Comments videoId={currentVideo._id} />
+          <Comments videoId={currentVideo?._id} />
         </div>
       </div>
       {recommendedVideos.length > 0 && (
