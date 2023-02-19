@@ -133,7 +133,7 @@ function Reproducer() {
             playing={true}
             url={currentVideo?.videoURL}
             width="100%"
-            height="70vh"
+            height="65vh"
             controls={true}
           />
           <h2 className="title">{currentVideo?.title}</h2>
