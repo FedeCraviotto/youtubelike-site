@@ -85,5 +85,82 @@
         }
       }
     }
+    &Lg {
+      display: flex;
+      width: 100%;
+      margin-bottom: 10px;
+      gap: 20px;
+      &:hover .details .info #recommendation-options {
+        visibility: visible;
+      }
+      a {
+        flex: 1;
+        overflow: hidden;
+        height: 210px;
+        max-width: 390px;
+        img {
+          border-radius: 25px;
+          object-fit: cover;
+        }
+      }
+      .details {
+        flex: 1.5;
+        margin-top: 0px;
+        
+        .info {
+          width: 100%;
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
+          align-items: flex-start;
+          gap: 5px;
+          .title{
+            font-size: 20px;
+          }
+          .channel-info {
+            order: 2;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            .avatar {
+              width: 22px;
+              height: 22px;
+              border-radius: 50%;
+            }
+            .channel {
+              font-size: 16px;
+              font-weight: normal;
+              color: themed("textColorSoft");
+            }
+          }
+          .stats {
+            order: 1;
+            font-size: 13px;
+            color: themed("textColorSoft");
+          }
+          .description {
+            order: 3;
+            font-size: 14px;
+            color: themed("textColorSoft");
+            text-overflow: ellipsis;
+            overflow: hidden; 
+            width: 550px;
+            height: 1.2em; 
+            white-space: nowrap;
+          }
+          #recommendation-options {
+            position: absolute;
+            transition: visibility 50ms;
+            visibility: hidden;
+            top: 0px;
+            right: 0px;
+            padding: 2px;
+            border-radius: 50%;
+            cursor: pointer;
+          }
+        }
+      }
+    }
   }
 }

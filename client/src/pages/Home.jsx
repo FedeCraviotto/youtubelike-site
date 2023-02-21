@@ -12,8 +12,8 @@ function Home({ type }){
     useEffect(()=>{
         // useEffect no puede ser async, por eso creamos una funcion
         const fetchVideos = async () => {
-            const res = await axios.get(`${process.env.REACT_APP_API}/videos/${type}`);
             try {
+                const res = await axios.get(`${process.env.REACT_APP_API}/videos/${type}`);
                 setVideos(res.data);
                 setIsLoading(false);
             } catch (err) {

@@ -7,6 +7,7 @@ import { DarkModeContext } from "./context/darkModeContext";
 import { useContext } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Home from "./pages/Home";
+import Search from "./pages/Search";
 import Reproducer from "./pages/Reproducer";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -73,6 +74,7 @@ function App() {
                     <Route exact index element={<Home type={'random'}/>} />
                     <Route path="/trends"  element={<Home type={'trend'}/>} />
                     <Route path="/subscriptions" element={<Home type={'sub'}/>} />
+                    <Route path="/search" element={<Search />} />
                   </Route>
                   <Route path="video">
                     <Route path=":id" element={<Reproducer />} />

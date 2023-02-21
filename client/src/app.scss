@@ -5,6 +5,8 @@
     position: relative;
     display: flex;
     .main {
+      display: flex;
+      flex-direction: column;
       flex: 7;
       background-color: themed("bgSoft");
       color: themed("textColor");

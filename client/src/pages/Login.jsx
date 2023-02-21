@@ -2,15 +2,12 @@ import React, { useState } from "react";
 import "./login.scss";
 import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
-import { useDispatch, useSelector } from "react-redux";
-import { loginFailure, loginStart, loginSuccess } from "../redux/userSlice";
+import { useDispatch } from "react-redux";
+import { loginStart, loginSuccess } from "../redux/userSlice";
 
 function Login() {
 
   const navigate = useNavigate();
-  // const {error : err } = useSelector((state) =>{
-  //   return state.user
-  // })
   const [loginError, setLoginError] = useState(null)
   const [inputs, setInputs] = useState({
     email: "",

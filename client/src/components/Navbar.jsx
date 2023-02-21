@@ -10,7 +10,7 @@ import MoreVertOutlinedIcon from "@mui/icons-material/MoreVertOutlined";
 import SettingsBrightnessOutlinedIcon from "@mui/icons-material/SettingsBrightnessOutlined";
 import { DarkModeContext } from "../context/darkModeContext.js";
 import { useContext, useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   loginFailure,
@@ -30,7 +30,10 @@ function Navbar({ setMenuOpen, menuBackdrop }) {
   });
   const [configMenuOpen, setConfigMenuOpen] = useState(false);
   const [videoPopup, setVideoPopup] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+
   const configMenuref = useRef();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { toggleMode, darkMode } = useContext(DarkModeContext);
 
@@ -70,7 +73,11 @@ function Navbar({ setMenuOpen, menuBackdrop }) {
       });
   }
 
-  const handlePopup = () => {};
+  const handleKeydown = (e) => {
+    if (e.key === 'Enter') {
+      navigate(`/search?q=${searchQuery}`);
+    }
+  }
 
   return (
     <>
@@ -88,8 +95,9 @@ function Navbar({ setMenuOpen, menuBackdrop }) {
             </div>
           </Link>
           <div className="search">
-            <input type="text" placeholder="Buscar" />
-            <button>
+            <input type="text" placeholder="Buscar" onChange={(e)=> setSearchQuery(e.target
+              .value)} onKeyDown={handleKeydown}/>
+            <button onClick={()=> navigate(`/search?q=${searchQuery}`)}>
               <SearchOutlinedIcon />
             </button>
             <button className="microphone">

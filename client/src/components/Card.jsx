@@ -10,7 +10,7 @@ moment.locale("es");
 function Card({ video, type }) {
   
   const [channel, setChannel] = useState([]);
-  const [error, setError] = useState(false);
+const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(true)
   useEffect(()=>{
       // useEffect no puede ser async, por eso creamos una funcion
@@ -30,15 +30,22 @@ function Card({ video, type }) {
   if(isLoading) return 'Loading...';
 
   return (
-    <div className={`${type === "small" ? "card cardSm" : "card"}`}>
+    <div className={`${type === "small" ? "card cardSm" : type === "large" ? "card cardLg" : "card"}`}>
       <Link to={`/video/${video._id}`}>
         <img src={video.imageURL} alt="" />
       </Link>
       <div className="details">
-        <img className="avatar" src={channel.image} alt="" />
+        {type !== 'large' && <img className="avatar" src={channel.image} alt="" />}
         <div className="info">
           <h2 className="title">{video.title}</h2>
-          <h3 className="channel">{channel.name}</h3>
+          {type === 'large' ? (
+            <div className="channel-info">
+              <img className="avatar" src={channel.image} alt="" />
+              <h3 className="channel">{channel.name}</h3>
+            </div>
+          ) : (
+            <h3 className="channel">{channel.name}</h3> 
+          )}
           <div className="stats">
             <span className="views">
               {video.views}{" "}
@@ -50,7 +57,9 @@ function Card({ video, type }) {
               {moment(video.createdAt).fromNow()}
             </span>
           </div>
-          {type === 'small' && <MoreVertOutlinedIcon id="recommendation-options" />}
+          {type === 'large' && <p className="description">{video.description}</p>}
+          
+          {(type === 'small' || type === 'large') && <MoreVertOutlinedIcon id="recommendation-options" />}
         </div>
       </div>
     </div>
