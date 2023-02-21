@@ -1,5 +1,5 @@
 @import '../common.scss';
-.container{
+.upload-popup{
     @include themify($themes) {
         display: flex;
         align-items: center;
@@ -57,6 +57,18 @@
                 border-bottom: 0.5px solid rgba(249, 249, 249, 0.973);
                 }
             }
+            .uploads{
+                display: flex;
+                align-items: center;
+                gap: 30px;
+            }
+            .url-mini{
+                width: 120px;
+                height: 120px;
+            }
+            .cancel {
+                display: inline;
+            }
             label{
                 font-size: 14px;
             }
@@ -74,6 +86,10 @@
                 cursor: pointer;
                 &:hover{
                     background-color: rgba(255,255,255,0.28);
+                }
+                &.disabled{
+                    pointer-events: none;
+                    opacity: .65;
                 }
                 svg{
                     font-size: 18px;
