@@ -33,14 +33,14 @@ axios.defaults.withCredentials = true;
 function App() {
 
   const {currentUser} = useSelector((state)=> state.user);
-  const menuBackdrop = useRef(null);
+  const menuBackdrop = useRef();
   // As useRef doesn't triggers element's re-render, we should force the re-render
   // If we don't force the re render, useRef initally will be 'undefined'
-  const [refAcquired, setRefAcquired] = useState(false);
+  // const [refAcquired, setRefAcquired] = useState(false);
 
-  useEffect(() => {
-    setRefAcquired(true);
-  },[]);
+  // useEffect(() => {
+  //   setRefAcquired(true);
+  // },[]);
 
   function handleMenuClose() {
     setMenuOpen(false);

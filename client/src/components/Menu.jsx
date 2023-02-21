@@ -26,8 +26,24 @@ function Menu({ menuOpen, setMenuOpen, menuBackdrop }) {
       : (sideMenu.current.style.transform = "translateX(-100%)");
   }, [menuOpen]);
 
+  useEffect(()=>{
+    console.log('adding')
+    document.querySelectorAll('.item').forEach((item) => {
+      item.addEventListener('click',()=> {
+        handleMenuClose()
+      });
+    })
+    return ()=> {
+      console.log('removing')
+      document.querySelectorAll('item').forEach((item) => {
+        item.removeEventListener("click", handleMenuClose);
+      })
+    }
+  },[])
 
-  function handleMenuClose() {
+
+  function handleMenuClose(e) {
+    console.log('executing')
     setMenuOpen(false);
     menuBackdrop.current.style.opacity = "0";
     menuBackdrop.current.style.zIndex = "-1";
