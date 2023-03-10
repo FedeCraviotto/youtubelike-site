@@ -9,6 +9,6 @@ export const connect = () => {
         console.log("Connected successfully to DB");
       })
       .catch((err) => {
-        createError(500, 'Failed to connect with Mongo DB');
+        createError(500, 'Internal Server Error - Failed to connect with Mongo DB');
       });
   };

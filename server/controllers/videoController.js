@@ -1,6 +1,7 @@
 import { createError } from "#Utils/customErrors.js";
 import Video from "#Models/Video.js";
 import User from "#Models/User.js";
+
 const videoController = {
   add: async (req, res, next) => {
     const newVideo = new Video({
@@ -9,34 +10,36 @@ const videoController = {
     });
     try {
       const savedVideo = await newVideo.save();
-      res.status(200).json(savedVideo);
-    } catch (error) {
-      next(error);
+      res.status(201).json({
+        message: 'Video created successfully',
+        savedVideo
+      });
+    } catch (err) {
+      next(createError(500, err.message));
     }
   },
   update: async (req, res, next) => {
     try {
-      // Primero buscamos el video, porque ese modelo tiene el userId -osea el idea del usuario duenio del video, el unico que lo deberia poder actualizar
       const video = await Video.findById(req.params.id);
+      // Check if we are the owners
       if (!video) return next(createError(404, "Video not found!"));
-      // Pero despues, nos preguntamos si somos el duenio de ese video
-      // porque sino lo actualiza cualquiera. Lo confrontamos con el jwt
       if (req.user.id === video.userId) {
         const updatedVideo = await Video.findByIdAndUpdate(
           req.params.id,
           {
             $set: req.body,
           },
-          {
-            new: true,
-          }
+          // check if it's ne
+          // {
+          //   new: true,
+          // }
         );
         res.status(200).json(updatedVideo);
       } else {
         return next(createError(403, "You can update only your videos"));
       }
-    } catch (error) {
-      next(error);
+    } catch (err) {
+      next(createError(500, err.message));
     }
   },
   delete: async (req, res, next) => {
@@ -50,8 +53,8 @@ const videoController = {
       } else {
         return next(createError(403, "You can delete only your videos"));
       }
-    } catch (error) {
-      next(error);
+    } catch(err) {
+      next(createError(500, err.message));
     }
   },
   get: async (req, res, next) => {

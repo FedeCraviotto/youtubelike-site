@@ -13,9 +13,11 @@ const authController = {
                 password : hashedPass
             });
             await newUser.save();
-            res.status(200).send('User created successfully');
-        } catch(error) {
-            next(error);
+            res.status(201).json({
+                message: 'User created successfully'
+            });
+        } catch(err) {
+            next(createError(401, 'Invalid credentials'));
         }
         
     },
@@ -25,18 +27,21 @@ const authController = {
                 email: req?.body?.email
             });
             if (!user) return next(createError(404, 'User not found'));
+
             const isCorrect = bcrypt.compareSync(req.body.password, user.password);
-            if(!isCorrect) return next(createError(400, 'Wrong Credentials'));
+            if(!isCorrect) return next(createError(401, 'Invalid credentials'));
 
             const token = jwt.sign({id: user._id}, process.env.JWT_SECRET_KEY);
-
             const {password, ...safeInfo} = user._doc;
-            
             res.cookie('accessToken', token, {
                 httpOnly : true,
-            }).status(200).json(safeInfo);
-        } catch(error) {
-            next(error);
+            }).status(201).json({
+                message: 'User successfully created',
+                user: safeInfo
+            });
+
+        } catch(err) {
+            next(createError(500, err.message));
         }
         
     },
@@ -57,10 +62,13 @@ const authController = {
                 const token = jwt.sign({id: savedUser._id}, process.env.JWT_SECRET_KEY);
                 res.cookie('accessToken', token, {
                     httpOnly : true,
-                }).status(200).json(savedUser);
+                }).status(201).json({
+                    message: 'User successfully created with Google info',
+                    user: savedUser
+                });
             }
-        } catch (error) {
-            next(error);
+        } catch(err) {
+            next(createError(500, err.message));
         }
     },
 }
