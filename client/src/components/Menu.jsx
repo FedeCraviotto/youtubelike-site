@@ -43,7 +43,6 @@ function Menu({ menuOpen, setMenuOpen, menuBackdrop }) {
 
 
   function handleMenuClose(e) {
-    console.log('executing')
     setMenuOpen(false);
     menuBackdrop.current.style.opacity = "0";
     menuBackdrop.current.style.zIndex = "-1";

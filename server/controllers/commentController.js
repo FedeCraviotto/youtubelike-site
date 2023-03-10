@@ -1,6 +1,6 @@
-import { createError } from '../customErrors.js';
-import Comment from '../models/Comment.js';
-import Video from '../models/Video.js';
+import { createError } from '#Utils/customErrors.js';
+import Comment from '#Models/Comment.js';
+import Video from '#Models/Video.js';
 const commentController = {
     addComment : async (req, res, next) =>{
         const newComment = new Comment({...req.body, userId:req.user.id})

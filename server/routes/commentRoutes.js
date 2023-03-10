@@ -1,6 +1,6 @@
 import express from 'express';
-import commentController from '../controllers/commentController.js';
-import verifyToken from '../verifyToken.js';
+import commentController from '#Controllers/commentController.js';
+import verifyToken from '#Utils/verifyToken.js';
 const router = express.Router();
 
 router.post('/', verifyToken, commentController.addComment);

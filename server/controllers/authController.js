@@ -1,7 +1,6 @@
-import mongoose from 'mongoose';
-import User from '../models/User.js';
+import User from '#Models/User.js';
 import bcrypt from 'bcryptjs';
-import { createError } from '../customErrors.js';
+import { createError } from '#Utils/customErrors.js';
 import jwt from 'jsonwebtoken';
 
 const authController = {

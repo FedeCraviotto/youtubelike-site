@@ -1,5 +1,5 @@
-import { createError } from "../customErrors.js";
-import User from "../models/User.js";
+import { createError } from "#Utils/customErrors.js";
+import User from "#Models/User.js";
 
 const userController = {
   get: async (req, res, next) => {

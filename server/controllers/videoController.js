@@ -1,6 +1,6 @@
-import { createError } from "../customErrors.js";
-import Video from "../models/Video.js";
-import User from "../models/User.js";
+import { createError } from "#Utils/customErrors.js";
+import Video from "#Models/Video.js";
+import User from "#Models/User.js";
 const videoController = {
   add: async (req, res, next) => {
     const newVideo = new Video({

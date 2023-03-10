@@ -1,6 +1,6 @@
 import express from 'express';
-import videoController from '../controllers/videoController.js';
-import verifyToken from '../verifyToken.js';
+import videoController from '#Controllers/videoController.js';
+import verifyToken from '#Utils/verifyToken.js';
 const router = express.Router();
 
 // Cuidado siempre con usar el user.id del request, no olvidar el middleware
