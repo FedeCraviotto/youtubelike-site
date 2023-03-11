@@ -6,9 +6,12 @@ const commentController = {
         const newComment = new Comment({...req.body, userId:req.user.id})
         try {
             const savedComment = await newComment.save();
-            res.status(200).send(savedComment);
-        } catch (error) {
-            next(error)
+            res.status(201).send({
+                message: 'Comment created successfully',
+                comment: savedComment
+            });
+        } catch (err) {
+            next(createError(500, err.message));
         }
     },
     deleteComment : async (req, res, next) =>{
@@ -21,16 +24,16 @@ const commentController = {
             } else {
                 return next(createError(403, "You can delete only your own comments"))
             }
-        } catch (error) {
-            next(error)
+        } catch (err) {
+            next(createError(500, err.message));
         }
     },
     getComments : async (req, res, next) =>{
         try {
             const comments = await Comment.find({videoId: req.params.id})
             res.status(200).json(comments);
-        } catch (error) {
-            next(error)
+        } catch (err) {
+            next(createError(500, err.message));
         }
     },
 }

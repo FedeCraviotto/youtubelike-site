@@ -30,7 +30,7 @@ function Navbar({ setMenuOpen, menuBackdrop }) {
   });
   const [configMenuOpen, setConfigMenuOpen] = useState(false);
   const [videoPopup, setVideoPopup] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
 
   const configMenuref = useRef();
   const navigate = useNavigate();
@@ -74,10 +74,22 @@ function Navbar({ setMenuOpen, menuBackdrop }) {
   }
 
   const handleKeydown = (e) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       navigate(`/search?q=${searchQuery}`);
     }
-  }
+  };
+
+  const handleLogout = async () => {
+    axios
+      .post(`${process.env.REACT_APP_API}/auth/signout`)
+      .then((res) => {
+        dispatch(logout());
+      })
+      .catch((err) => {
+        throw new Error(err.message)
+      });
+    setConfigMenuOpen(!configMenuOpen);
+  };
 
   return (
     <>
@@ -95,9 +107,13 @@ function Navbar({ setMenuOpen, menuBackdrop }) {
             </div>
           </Link>
           <div className="search">
-            <input type="text" placeholder="Buscar" onChange={(e)=> setSearchQuery(e.target
-              .value)} onKeyDown={handleKeydown}/>
-            <button onClick={()=> navigate(`/search?q=${searchQuery}`)}>
+            <input
+              type="text"
+              placeholder="Buscar"
+              onChange={(e) => setSearchQuery(e.target.value)}
+              onKeyDown={handleKeydown}
+            />
+            <button onClick={() => navigate(`/search?q=${searchQuery}`)}>
               <SearchOutlinedIcon />
             </button>
             <button className="microphone">
@@ -115,10 +131,7 @@ function Navbar({ setMenuOpen, menuBackdrop }) {
                 {currentUser && (
                   <li
                     className="item"
-                    onClick={() => {
-                      dispatch(logout());
-                      setConfigMenuOpen(!configMenuOpen);
-                    }}
+                    onClick={handleLogout}
                   >
                     <SettingsBrightnessOutlinedIcon />
                     Logout
@@ -156,7 +169,7 @@ function Navbar({ setMenuOpen, menuBackdrop }) {
           </div>
         </div>
       </div>
-      {videoPopup && <UploadPopup setVideoPopup={setVideoPopup}/>}
+      {videoPopup && <UploadPopup setVideoPopup={setVideoPopup} />}
     </>
   );
 }

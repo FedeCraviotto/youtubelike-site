@@ -39,7 +39,6 @@ const authController = {
                 message: 'User successfully created',
                 user: safeInfo
             });
-
         } catch(err) {
             next(createError(500, err.message));
         }
@@ -71,5 +70,15 @@ const authController = {
             next(createError(500, err.message));
         }
     },
+    signOut: async (req, res) => {
+        res
+            .clearCookie('accessToken',{
+            secure:true,
+            sameSite:'none'
+            
+        })
+            .status(200)
+            .json('Successfully logged out');
+    }
 }
 export default authController;
