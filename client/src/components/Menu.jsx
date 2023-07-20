@@ -27,19 +27,17 @@ function Menu({ menuOpen, setMenuOpen, menuBackdrop }) {
   }, [menuOpen]);
 
   useEffect(()=>{
-    console.log('adding')
     document.querySelectorAll('.item').forEach((item) => {
       item.addEventListener('click',()=> {
         handleMenuClose()
       });
-    })
+    });
     return ()=> {
-      console.log('removing')
       document.querySelectorAll('item').forEach((item) => {
         item.removeEventListener("click", handleMenuClose);
       })
-    }
-  },[])
+    };
+  },[]);
 
 
   function handleMenuClose(e) {
